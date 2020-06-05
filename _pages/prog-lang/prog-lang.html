@@ -1,0 +1,158 @@
+---
+layout: page
+title: Time is always silent and it takes time for flowers to bloom . Must be patient .
+permalink: /prog-lang
+first-level-classification: prog-lang
+twice-level-classification: [c,c++,shell,make,python,golang,web]
+---
+
+<!-- Posts Index
+================================================== -->
+<section class="recent-posts">
+
+ <div class="section-title">
+
+  <h2><a class="nav-link" href="{{ site.baseurl }}/prog-lang/c"><span>C Program</span></a></h2>
+
+ </div>
+
+  <div class="row listrecent">
+   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[0] %}
+   {% for post in posts reversed %}
+   {% if post.top-twice == true %}
+
+    {% include postbox.html %}
+
+   {% endif %}
+   {% endfor %}
+
+  </div>
+
+</section>
+<section class="recent-posts">
+
+ <div class="section-title">
+
+  <h2><a class="nav-link" href="{{ site.baseurl }}/linux-PC/prog-lang/c++"><span>C++ Program</span></a></h2>
+
+ </div>
+
+  <div class="row listrecent">
+   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[1] %}
+   {% for post in posts reversed %}
+   {% if post.top-twice == true %}
+
+    {% include postbox.html %}
+
+   {% endif %}
+   {% endfor %}
+
+  </div>
+
+</section>
+<section class="recent-posts">
+
+ <div class="section-title">
+
+  <h2><a class="nav-link" href="{{ site.baseurl }}/prog-lang/shell"><span>Shell</span></a></h2>
+
+ </div>
+
+  <div class="row listrecent">
+   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[2] %}
+   {% for post in posts reversed %}
+   {% if post.top-twice == true %}
+
+    {% include postbox.html %}
+
+   {% endif %}
+   {% endfor %}
+
+  </div>
+
+</section>
+<section class="recent-posts">
+
+ <div class="section-title">
+
+  <h2><a class="nav-link" href="{{ site.baseurl }}/prog-lang/make"><span>Make</span></a></h2>
+
+ </div>
+
+  <div class="row listrecent">
+   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[3] %}
+   {% for post in posts reversed %}
+   {% if post.top-twice == true %}
+
+    {% include postbox.html %}
+
+   {% endif %}
+   {% endfor %}
+
+  </div>
+
+</section>
+<section class="recent-posts">
+
+ <div class="section-title">
+
+  <h2><a class="nav-link" href="{{ site.baseurl }}/prog-lang/python"><span>Python</span></a></h2>
+
+ </div>
+
+  <div class="row listrecent">
+   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[4] %}
+   {% for post in posts reversed %}
+   {% if post.top-twice == true %}
+
+    {% include postbox.html %}
+
+   {% endif %}
+   {% endfor %}
+
+  </div>
+
+</section>
+<section class="recent-posts">
+
+ <div class="section-title">
+
+  <h2><a class="nav-link" href="{{ site.baseurl }}/prog-lang/golang"><span>Golang</span></a></h2>
+
+ </div>
+
+  <div class="row listrecent">
+   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[5] %}
+   {% for post in posts reversed %}
+   {% if post.top-twice == true %}
+
+    {% include postbox.html %}
+
+   {% endif %}
+   {% endfor %}
+
+  </div>
+
+</section>
+<section class="recent-posts">
+
+ <div class="section-title">
+
+  <h2><a class="nav-link" href="{{ site.baseurl }}/prog-lang/web"><span>Web</span></a></h2>
+
+ </div>
+
+  <div class="row listrecent">
+   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[6] %}
+   {% for post in posts reversed %}
+   {% if post.top-twice == true %}
+
+    {% include postbox.html %}
+
+   {% endif %}
+   {% endfor %}
+
+  </div>
+
+</section>
+

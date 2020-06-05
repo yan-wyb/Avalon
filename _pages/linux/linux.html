@@ -1,0 +1,73 @@
+---
+layout: page
+title: Time is always silent and it takes time for flowers to bloom . Must be patient .
+permalink: /linux
+first-level-classification: linux
+twice-level-classification: [ubuntu,development,shell]
+---
+
+<!-- Posts Index
+================================================== -->
+<section class="recent-posts">
+
+ <div class="section-title">
+
+  <h2><a class="nav-link" href="{{ site.baseurl }}/linux/ubuntu"><span>Ubuntu</span></a></h2>
+
+ </div>
+
+  <div class="row listrecent">
+   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[0] %}
+   {% for post in posts reversed %}
+   {% if post.top-twice == true %}
+
+    {% include postbox.html %}
+
+   {% endif %}
+   {% endfor %}
+
+  </div>
+
+</section>
+<section class="recent-posts">
+
+ <div class="section-title">
+
+  <h2><a class="nav-link" href="{{ site.baseurl }}/linux/development"><span>Development</span></a></h2>
+
+ </div>
+
+  <div class="row listrecent">
+   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[1] %}
+   {% for post in posts reversed %}
+   {% if post.top-twice == true %}
+
+    {% include postbox.html %}
+
+   {% endif %}
+   {% endfor %}
+
+  </div>
+
+</section>
+<section class="recent-posts">
+
+ <div class="section-title">
+
+  <h2><a class="nav-link" href="{{ site.baseurl }}/linux/shell"><span>Shell</span></a></h2>
+
+ </div>
+
+  <div class="row listrecent">
+   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[2] %}
+   {% for post in posts reversed %}
+   {% if post.top-twice == true %}
+
+    {% include postbox.html %}
+
+   {% endif %}
+   {% endfor %}
+
+  </div>
+
+</section>

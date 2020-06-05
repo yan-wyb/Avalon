@@ -1,0 +1,83 @@
+# Site
+name: "Avalon"
+title: "Avalon"
+description: "Garden of Avalon."
+logo: 'assets/images/logo.png'
+favicon: 'assets/images/logo.png'
+#google_analytics: ''
+disqus: 'demowebsite'
+include: ["_pages"]
+permalink: /:year/:month/:day/:title:output_ext
+
+timezone: PRC
+
+# Authors
+author:
+  name: Yan
+  avatar: Yan
+  display_name: Yan
+#  gravatar: e56154546cf4be74e393c62d1ae9f9d4
+  email: yan-wyb@foxmail.com
+  web: https://yan-wyb.github.io/Avalon/
+#  twitter: https://twitter.com/wowthemesnet
+  description: "Just a simple man."
+  twitter_username: wybyan
+#  facebook_username: https://www.facebook.com/yan.wyb.7
+  github_username:  yan-wyb
+#  linkedin_username:  yan-wyb
+
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-archives
+  - jekyll-last-modified-at
+    
+# Archives
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layout: archive
+  permalinks:
+    category: '/category/:name/'
+    
+# Pagination 
+paginate: 3
+paginate_path: /page:num
+    
+# Other
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+# Adsense (change to "enabled" to activate, also your client id and ad slot. Create a new ad unit from your Adsense account to get the slot.)
+adsense: "disabled"
+adsense-data-ad-client: ""
+adsense-data-ad-slot: ""
+
+# Lazy Images ("enabled" or "disabled")
+lazyimages: "disabled"
+
+exclude:
+  - README.md
+  - Rakefile
+  - Gemfile
+  - Gemfile.lock
+  - changelog.md
+  - "*.Rmd"
+  - vendor
+  - .travis.yml
+  - LICENSE.txt
+
+last-modified-at:
+    date-format: '%y-%b-%d-%h-%m-%s'
+
+repo: Avalon

@@ -1,0 +1,13 @@
+services:
+
+  blog:
+
+    build:
+
+      context: .
+
+      dockerfile: Dockerfile
+
+    image: avalon:latest
+
+    network_mode: host
