@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Time is always silent and it takes time for flowers to bloom . Must be patient . 
-permalink: /all
+permalink: /all/index.html
 first-level-classification: [linux,embedded,algorithm,prog-lang,ai,miscellaneous]
 ---
 
