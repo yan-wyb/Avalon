@@ -1,9 +1,9 @@
 ---
 layout: page
 title: Time is always silent and it takes time for flowers to bloom . Must be patient .
-permalink: /algorithm/index.html
-first-level-classification: algorithm
-twice-level-classification: [leetcode]
+permalink: /linux/basic-linux/index.html
+first-level-classification: linux
+twice-level-classification: basic-linux
 ---
 
 <!-- Posts Index
@@ -12,20 +12,20 @@ twice-level-classification: [leetcode]
 
  <div class="section-title">
 
-  <h2><a class="nav-link" href="{{ site.baseurl }}/algorithm/leetcode/index.html"><span>Leetcode</span></a></h2>
+  <h2><span>All Stories</span></h2>
 
  </div>
 
   <div class="row listrecent">
-   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[0] %}
+   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification %}
    {% for post in posts reversed %}
-   {% if post.top-twice == true %}
 
     {% include postbox.html %}
 
-   {% endif %}
    {% endfor %}
 
   </div>
 
 </section>
+
+
