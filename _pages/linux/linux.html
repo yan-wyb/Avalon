@@ -3,7 +3,7 @@ layout: page
 title: Time is always silent and it takes time for flowers to bloom . Must be patient .
 permalink: /linux/index.html
 first-level-classification: linux
-twice-level-classification: [ubuntu,development,shell]
+twice-level-classification: [basic-linux,ubuntu,development,shell]
 ---
 
 <!-- Posts Index
@@ -39,7 +39,7 @@ twice-level-classification: [ubuntu,development,shell]
  </div>
 
   <div class="row listrecent">
-   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[0] %}
+   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[1] %}
    {% for post in posts reversed %}
    {% if post.top-twice == true %}
 
@@ -60,7 +60,7 @@ twice-level-classification: [ubuntu,development,shell]
  </div>
 
   <div class="row listrecent">
-   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[1] %}
+   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[2] %}
    {% for post in posts reversed %}
    {% if post.top-twice == true %}
 
@@ -81,7 +81,7 @@ twice-level-classification: [ubuntu,development,shell]
  </div>
 
   <div class="row listrecent">
-   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[2] %}
+   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[3] %}
    {% for post in posts reversed %}
    {% if post.top-twice == true %}
 
