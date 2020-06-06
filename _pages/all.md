@@ -11,7 +11,7 @@ first-level-classification: [linux,embedded,algorithm,prog-lang,ai,miscellaneous
 
  <div class="section-title">
 
-  <h2><a class="nav-link" href="{{ site.baseurl }}/linux/"><span>Linux</span></a></h2>
+  <h2><a class="nav-link" href="{{ site.baseurl }}/linux/index.html"><span>Linux</span></a></h2>
 
  </div>
 
@@ -35,7 +35,7 @@ first-level-classification: [linux,embedded,algorithm,prog-lang,ai,miscellaneous
 
  <div class="section-title">
 
-  <h2><a class="nav-link" href="{{ site.baseurl }}/embedded/"><span>Embedded</span></a></h2>
+  <h2><a class="nav-link" href="{{ site.baseurl }}/embedded/index.html"><span>Embedded</span></a></h2>
 
  </div>
 
@@ -59,7 +59,7 @@ first-level-classification: [linux,embedded,algorithm,prog-lang,ai,miscellaneous
 
  <div class="section-title">
 
-  <h2><a class="nav-link" href="{{ site.baseurl }}/algorithm/"><span>Algorithm</span></a></h2>
+  <h2><a class="nav-link" href="{{ site.baseurl }}/algorithm/index.html"><span>Algorithm</span></a></h2>
 
  </div>
 
@@ -83,7 +83,7 @@ first-level-classification: [linux,embedded,algorithm,prog-lang,ai,miscellaneous
 
  <div class="section-title">
 
-  <h2><a class="nav-link" href="{{ site.baseurl }}/prog-lang/"><span>Prog-lang</span></a></h2>
+  <h2><a class="nav-link" href="{{ site.baseurl }}/prog-lang/index.html"><span>Prog-lang</span></a></h2>
 
  </div>
 
@@ -107,7 +107,7 @@ first-level-classification: [linux,embedded,algorithm,prog-lang,ai,miscellaneous
 
  <div class="section-title">
 
-  <h2><a class="nav-link" href="{{ site.baseurl }}/ai/"><span>AI</span></a></h2>
+  <h2><a class="nav-link" href="{{ site.baseurl }}/ai/index.html"><span>AI</span></a></h2>
 
  </div>
 
@@ -131,7 +131,7 @@ first-level-classification: [linux,embedded,algorithm,prog-lang,ai,miscellaneous
 
  <div class="section-title">
 
-  <h2><a class="nav-link" href="{{ site.baseurl }}/miscellaneous/"><span>Miscellaneous</span></a></h2>
+  <h2><a class="nav-link" href="{{ site.baseurl }}/miscellaneous/index.html"><span>Miscellaneous</span></a></h2>
 
  </div>
 
