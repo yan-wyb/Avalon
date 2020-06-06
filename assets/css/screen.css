@@ -209,7 +209,7 @@ section.recent-posts {
 }
 
 .toc ul {
-    list-style: decimal;
+    list-style: none;
     font-weight: 400;
 }
 
@@ -474,6 +474,12 @@ blockquote {
 
 .share,
 .share a {
+    color: rgba(0, 0, 0, .44);
+    fill: rgba(0, 0, 0, .44);
+}
+
+.share-yan,
+.share-yan a {
     color: rgba(0, 0, 0, .44);
     fill: rgba(0, 0, 0, .44);
 }
