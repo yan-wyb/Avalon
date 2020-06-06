@@ -53,5 +53,10 @@ set sw=4
 set fencs=utf-8,GB18030
 
 set background=dark
+
+if has("autocmd")
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
 ```
 
