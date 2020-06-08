@@ -10,7 +10,7 @@ top-first: true
 tpo-twice: false
 first-level-classification: miscellaneous
 twice-level-classification:
-permalink: /:categories/:year/:month/:day/:title:output_ext
+permalink: /:year/:month/:day/:title:output_ext
 ---
 
 VIM编辑器配置

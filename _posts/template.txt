@@ -10,6 +10,6 @@ top-first:
 top-twice: 
 first-level-classification:
 twice-level-classification:
-permalink: /:categories/:year/:month/:day/:title:output_ext
+permalink: /:year/:month/:day/:title:output_ext
 ---
 
