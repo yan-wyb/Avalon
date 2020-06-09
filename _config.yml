@@ -76,6 +76,10 @@ exclude:
   - vendor
   - .travis.yml
   - LICENSE.txt
+  - .githooks-build.sh
+  - docker-compose.yml
+  - Dockerfile
+  - .travis
 
 last-modified-at:
     date-format: '%y-%b-%d-%h-%m-%s'
