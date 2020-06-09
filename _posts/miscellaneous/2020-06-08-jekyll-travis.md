@@ -245,11 +245,11 @@ location / {
 
 主要完成本地PC环境的部署和github对travis的授权
 
-## ssh
+### ssh
 
 在本地安装`ssh`，将生成的公钥放上个github。请参照[ssh安装使用]({{ site.baseurl }}/2020/05/30/ssh.html)
 
-## ruby
+### ruby
 
 在本地环境中安装`ruby`环境请参考[Ruby安装使用]({{ site.baseurl }}/2020/06/05/ruby.html)
 
@@ -259,7 +259,9 @@ location / {
 $ gem install jekyll bundler travis
 ```
 
-## git
+### git
+
+#### Repositories设置
 
 首先要在`github`上把项目设置成`public`,`travis`只对开源项目免费，然后将项目clone到本地
 
@@ -268,7 +270,25 @@ $ cd ${workspace}
 $ git clone git@github.com:${user}/{your-blog}.git
 ```
 
-## travis
+之后需要新建`gh-pages`分支,同时推送到远端
+
+```shell
+$ git branch gh-pages
+$ git push origin pg-pages
+```
+
+#### 打开`github pages`
+
+打开仓库的setting
+
+![github-repo-setting]({{ site.baseurl }}/assets/images/miscellaneous/github-repo-setting.png)
+
+在列表中找到`github pages`,设置成`gh-pages`分支
+
+![github-pages-setting]({{ site.baseurl }}/assets/images/miscellaneous/github-pages-setting.png)
+
+
+### travis
 
 首先要使用github登录[travis](https://www.travis-ci.org/).打开`setting`
 
@@ -282,6 +302,8 @@ $ git clone git@github.com:${user}/{your-blog}.git
 
 
 ## 实现自动部署
+
+与部署到服务器不同,部署到`github pages`我们借用了`rake`实现自动部署
 
 ### github生成新的`token`
 
@@ -346,11 +368,129 @@ env:
     secure:"${secure}"
 ```
 
+编译和psuh的整个过程都通过`script: bundle exec rake deploy --quiet`交由`rake`完成
 
+
+### `rake`实现编译和push
+
+#### rakefile
+
+在根目录下新建一个`rakefile`
+
+```ruby
+#############################################################################
+#
+# Modified version of jekyllrb Rakefile
+# https://github.com/jekyll/jekyll/blob/master/Rakefile
+#
+#############################################################################
+
+require 'rake'
+require 'date'
+require 'yaml'
+
+CONFIG = YAML.load(File.read('_config.yml'))
+USERNAME = CONFIG["username"] || ENV['GIT_NAME']
+REPO = CONFIG["repo"] || "#{USERNAME}.github.io"
+
+# Determine source and destination branch
+# User or organization: source -> master
+# Project: master -> gh-pages
+# Name of source branch for user/organization defaults to "source"
+if REPO == "#{USERNAME}.github.io"
+  SOURCE_BRANCH = CONFIG['branch'] || "source"
+  DESTINATION_BRANCH = "master"
+else
+  SOURCE_BRANCH = "master"
+  DESTINATION_BRANCH = "gh-pages"
+end
+
+def check_destination
+  unless Dir.exist? CONFIG["destination"]
+    sh "git clone https://#{ENV['GIT_NAME']}:#{ENV['GH_TOKEN']}@github.com/#{USERNAME}/#{REPO}.git #{CONFIG["destination"]}"
+  end
+end
+
+task :deploy do
+    # Detect pull request
+    if ENV['TRAVIS_PULL_REQUEST'].to_s.to_i > 0
+      puts 'Pull request detected. Not proceeding with deploy.'
+      exit
+    end
+
+    # Configure git if this is run in Travis CI
+    if ENV["TRAVIS"]
+      sh "git config --global user.name '#{ENV['GIT_NAME']}'"
+      sh "git config --global user.email '#{ENV['GIT_EMAIL']}'"
+      sh "git config --global push.default simple"
+    end
+
+    # Make sure destination folder exists as git repo
+    check_destination
+
+    sh "git checkout #{SOURCE_BRANCH}"
+    # Generate the site
+    #sh "bundle exec jekyll build"
+
+    puts CONFIG["destination"]
+
+    Dir.chdir(CONFIG["destination"]) { sh "git checkout #{DESTINATION_BRANCH}" }
+
+    sh "bundle exec jekyll build"
+
+    # Commit and push to github
+    sha = `git log`.match(/[a-z0-9]{40}/)[0]
+    Dir.chdir(CONFIG["destination"]) do
+      sh "git add --all ."
+      sh "git commit -m 'Updating to #{USERNAME}/#{REPO}@#{sha}.'"
+      sh "git push --quiet origin #{DESTINATION_BRANCH}"
+      puts "Pushed updated branch #{DESTINATION_BRANCH} to GitHub Pages"
+    end
+end
+```
+
+#### Gemfile
+
+添加`rake`到`Gemfile`中,这样子`bundle install`就会自动安装`rake`以及依赖.没有`Gemfile`则新建一个
+
+```ruby
+gem "rake"
+gem "github-pages", ">= 204"
+```
+
+#### 修改`_config.yml`
+
+最后需要把`rakefile`,`Gemfile`以及`.travisi.yml`等添加添加到配置文件的`exclude`.配置文件等不作为编译的内容
+
+```yml
+exclude:
+  - README.md
+  - Rakefile
+  - Gemfile
+  - Gemfile.lock
+  - changelog.md
+  - "*.Rmd"
+  - vendor
+  - .travis.yml
+  - LICENSE.txt
+```
+
+新建一个`repo`变量,变量值为你的源码仓库的名字,在`rake`中push代码时会读取
+
+```yml
+repo: ${your-blog}
+```
+
+现在,在本地push代码到github以后,travis就会自动部署到你的`github pages`,你的`github pages`地址为
+
+```
+https://${user}.github.io/${your-blog}
+
+```
 
 
 # **note**
 
 1. `gitlab`操作与`github`相同
-2. 部署分支名字只能为`gh-pages`
+2. 部署到github-pages的话,部署分支名字只能为`gh-pages`
 3. 凡是`${ }`的都要替换
