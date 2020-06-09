@@ -13,3 +13,5 @@ twice-level-classification:
 permalink: /:year/:month/:day/:title:output_ext
 ---
 
+# Picturs ![]({{ site.baseurl }}/assets/images/)
+# link []({{ site.baseurl }})
