@@ -27,6 +27,8 @@ permalink: /:year/:month/:day/:title:output_ext
 3. `travis`通过`ssh`登录服务器自动同步代码编译新的静态网页代码
 4. `nginx`实现部署
 
+自动化部署私有仓库到服务器或者源仓库就在服务器可使用`githooks` --> [githooks自动化部署]({{ site.baseurl }}/2020/06/09/githooks.html)
+
 ## 环境准备
 
 这步主要是设置服务器的环境和travis对github的授权获取
