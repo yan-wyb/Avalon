@@ -132,7 +132,6 @@ script: jekyll build
 
 ```shell
 $ travis login
-Warning: the running version of Bundler (2.1.2) is older than the version that created the lockfile (2.1.4). We suggest you to upgrade to the version that created the lockfile by running `gem install bundler:2.1.4`.
 We need your GitHub login to identify you.
 This information will not be sent to Travis CI, only to api.github.com.
 The password will not be displayed.
@@ -142,6 +141,7 @@ Try running with --github-token or --auto if you don't want to enter your passwo
 Username: ${your/github/user}
 password: {your/github/password}
 ```
+
 出现`success`就是登录成功
 
 
@@ -267,6 +267,8 @@ $ gem install jekyll bundler travis
 
 首先要在`github`上把项目设置成`public`,`travis`只对开源项目免费，然后将项目clone到本地
 
+**note** : 这里一定要使用`ssh`的方式clone下来,不能使用`https`.
+
 ```shell
 $ cd ${workspace}
 $ git clone git@github.com:${user}/{your-blog}.git
@@ -333,6 +335,21 @@ $ git push origin pg-pages
 
 ### `token`生成密钥
 
+使用`git`账号登录`travis`
+
+```shell
+$ travis login
+We need your GitHub login to identify you.
+This information will not be sent to Travis CI, only to api.github.com.
+The password will not be displayed.
+
+Try running with --github-token or --auto if you don't want to enter your password anyway.
+
+Username: ${your/github/user}
+password: {your/github/password}
+```
+
+
 利用`travis`的`ruby`包可以生成包含`token`的密钥
 
 ```shell
@@ -375,9 +392,9 @@ env:
 
 ### `rake`实现编译和push
 
-#### rakefile
+#### Rakefile
 
-在根目录下新建一个`rakefile`
+在根目录下新建一个`Rakefile`
 
 ```ruby
 #############################################################################
@@ -462,7 +479,7 @@ gem "github-pages", ">= 204"
 
 #### 修改`_config.yml`
 
-最后需要把`rakefile`,`Gemfile`以及`.travisi.yml`等添加添加到配置文件的`exclude`.配置文件等不作为编译的内容
+最后需要把`Rakefile`,`Gemfile`以及`.travisi.yml`等添加添加到配置文件的`exclude`.配置文件等不作为编译的内容
 
 ```yml
 exclude:
@@ -475,6 +492,8 @@ exclude:
   - vendor
   - .travis.yml
   - LICENSE.txt
+
+destination: ./build_site/
 ```
 
 新建一个`repo`变量,变量值为你的源码仓库的名字,在`rake`中push代码时会读取
