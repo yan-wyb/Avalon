@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,6 +10,8 @@
 
 {% seo %}
 
+<link href="{{ site.baseurl }}/assets/css/bootstrap2.min.css" rel="stylesheet">
+
 <link href="{{ site.baseurl }}/assets/css/bootstrap.min.css" rel="stylesheet">
 
 <link href="{{ site.baseurl }}/assets/css/screen.css" rel="stylesheet">
@@ -19,6 +21,8 @@
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/all.css">
 
 <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
+
+<script src="{{ site.baseurl }}/assets/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -100,6 +104,13 @@ ga('send', 'pageview');
                 <a class="nav-link" href="{{ site.baseurl }}/about/index.html">About</a>
                 </li>
 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">language</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ site.baseurl_root }}{{ page.url }}">中文</a>
+                        <a class="dropdown-item" href="{{ site.baseurl_root }}/en{{ page.url }}">English</a>
+                    </div>
+                </li>
 
             </ul>
 

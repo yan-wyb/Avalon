@@ -1,0 +1,14 @@
+---
+layout: post
+author: Yan 
+toc: true
+top:
+image:
+title:
+tags:
+categories:
+first-level-classification:
+twice-level-classification:
+permalink: /:categories/:year/:month/:day/:title:output_ext
+---
+

@@ -24,3 +24,4 @@ end
 
 gem "github-pages",">= 204"
 gem "pygments.rb"
+gem "jekyll-multiple-languages-plugin"

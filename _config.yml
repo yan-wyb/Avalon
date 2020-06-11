@@ -8,6 +8,7 @@ favicon: 'assets/images/logo.png'
 disqus: 'demowebsite'
 include: ["_pages"]
 permalink: /:year/:month/:day/:title:output_ext
+baseurl: ""
 
 timezone: PRC
 
@@ -34,6 +35,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-archives
   - jekyll-last-modified-at
+  - jekyll-multiple-languages-plugin
     
 # Archives
 jekyll-archives:
@@ -43,7 +45,10 @@ jekyll-archives:
   layout: archive
   permalinks:
       #    category: '/category/:name/'
-    
+   
+languages: ["cn", "en"]
+default_lang : "cn"
+
 # Pagination 
 paginate: 3
 paginate_path: /page:num
