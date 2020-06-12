@@ -1,0 +1,44 @@
+<span class="mobile btn-mobile-menu">
+  <i class="icon icon-list btn-mobile-menu__icon"></i>
+  <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+</span>
+
+<header class="panel-cover" style="background-image: url({{ site.baseurl }}/assets/images/about-cover.jpeg)">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+        <a href="{{ site.baseurl }}/all/index.html" title="link to home of {{ site.title }}">
+          <img src="{{ site.baseurl }}/assets/images/about-yan.png" class="user-image" alt="My Profile Photo">
+          <h1 class="panel-cover__title panel-title">{{ site.author.name }}</h1>
+        </a>
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description"><font size="5">I'm just a simple person, </font></p>
+        <p class="panel-cover__description"><font size="5">welcome to be friends with me</font></p>
+        <hr class="panel-cover__divider">
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        <p class="panel-cover__description">Website  : <a href="www.yan-wyb.com">www.yan-wyb.com</a></p>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        <p class="panel-cover__description">Github  : <a href="https://github.com/yan-wyb">github.com/yan-wyb</a></p>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        <p class="panel-cover__description">Email  : yan-wyb@foxmail.com</p>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        <p class="panel-cover__description">Wechat:</p>
+        <img class="author-thumb" src="{{site.baseurl}}/assets/images/wechat.png" alt="{{ author.display_name }}" height="200">
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        <p class="panel-cover__description">{{ site.description }}</p>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
