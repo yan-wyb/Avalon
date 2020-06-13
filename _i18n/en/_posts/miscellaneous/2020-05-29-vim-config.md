@@ -13,29 +13,33 @@ twice-level-classification:
 permalink: /:year/:month/:day/:title:output_ext
 ---
 
-VIM编辑器配置
+VIM editor configuration
 
-## 安装VIM
+## Install VIM
 
+Install that using the system's package manager or software center. Take ubuntu as an example
 
-直接使用系统的包管理器或者软件中心安装。以ubuntu为例
 ```shell
 $ sudo apt install vim
 ```
-或者从官方的git上面clone,然后编译。
+
+Or clone from the official github and then compile.
+
 ```shell
 $ git clone https://github.com/vim/vim.git
 $ cd vim/src
 $ make
 ```
 
-## VIM配置文件
+## VIM configuration file
 
-默认安装的VIM是没有配置文件。在home目录创建一个，文件名`.vimrc`。每次VIM启动都会默认在home目录下加载这个配置文件.
+The VIM installed by default has no configuration file. Create one in the home directory with the file name `.vimrc`. Every time VIM starts, this configuration file is loaded in the home directory by default.
+
 ```shell
 $ touch ~/.vimrc
 ```
-简单的配置一下这个文件，如打开行号，tab键的功能等.
+
+Simply configure this file, such as opening the line number, the function of the tab key, etc.
 
 ```shell
 syntax on

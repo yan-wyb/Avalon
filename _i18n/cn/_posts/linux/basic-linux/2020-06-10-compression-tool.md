@@ -3,7 +3,7 @@ layout: post
 author: Yan 
 toc: true
 image: assets/images/linux/basic-linux/linux.jpg
-title:
+title: 压缩解压工具
 tags:
 categories: linux
 top-first: true

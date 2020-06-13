@@ -3,7 +3,7 @@ layout: post
 author: Yan 
 toc: true
 image: assets/images/linux/basic-linux/linux.jpg
-title:
+title: Compression and decompression tools
 tags:
 categories: linux
 top-first: true
@@ -15,7 +15,7 @@ permalink: /:year/:month/:day/:title:output_ext
 
 ## tar/gz/bz
 
-这些是linux系统自带的解压
+These are the decompression that comes with the linux system
 
 .tar
 
@@ -59,14 +59,14 @@ $ tar cvf file.tar file --> xz -z file.tar
 
 ## rar
 
-安装`rar`.以`APT`源为例
+Install `rar`. Take `APT` source as an example
 
 ```shell
 $ sudo apt update
 $ sudo apt install unrar
 ```
 
-解压和压缩
+Unzip and compress
 
 ```shell
 $ unrar e file.rar
@@ -75,13 +75,13 @@ $ rar a file
 
 ## 7z
 
-安装`7z`,以`APT`源为例
+Install `7z`, using `APT` source as an example
 
 ```shell
 $ sudo apt-get install p7zip
 ```
 
-解压与压缩
+Unzip and compress
 
 ```shell
 $ 7z x file.7z -r -o file
@@ -90,13 +90,14 @@ $ 7z a -t7z -r file.7z file
 
 ## zip/unzip
 
-安装`zip/unzip`,以`APT`源为例
+Install `zip/unzip`, using `APT` source as an example
 
 ```shell
 $ sudo apt update
 $ sudo apt install zip unzip
 ```
-解压与压缩
+
+Decompression and compression
 
 ```shell
 $ zip -r file.zip file
@@ -104,7 +105,7 @@ $ unzip file.zip
 ```
 
 
-## 超大文件压缩成多个文件
+## Oversize files compressed into multiple files
 
 ```shell
 $ rar a -v50m(50k) file.rar file

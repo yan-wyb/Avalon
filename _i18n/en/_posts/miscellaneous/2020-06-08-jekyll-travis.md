@@ -3,7 +3,7 @@ layout: post
 author: Yan 
 toc: true
 image: assets/images/miscellaneous/jekyll-travis.png
-title: jekyll自动部署
+title: jekyll automatic deployment
 tags:
 categories: [ruby, git, nginx, travis, ssh, linux]
 top-first: false
@@ -14,103 +14,102 @@ permalink: /:year/:month/:day/:title:output_ext
 ---
 
 
-使用travis自动部署jekyll博客到服务器或者github-pages
+Use travis to automatically deploy jekyll blog to server or github-pages
 
 
+# Deploy to server
 
-# 部署到服务器
+## Brief description
 
-## 简述
+1. Authorize `travis` to read, write, and monitor warehouse permissions
+2. Local to push code to remote trigger `travis`
+3. `travis` login server via `ssh` to automatically synchronize code to compile new static web page code
+4. `nginx` implementation deployment
 
-1. 授权`travis`读写和监测仓库的权限
-2. 本地到push代码到远程触发`travis`
-3. `travis`通过`ssh`登录服务器自动同步代码编译新的静态网页代码
-4. `nginx`实现部署
+Automate the deployment of private repositories to the server or the source repository on the server can use `githooks` --> [githooks automated deployment] ({{ site.baseurl }}/2020/06/09/githooks.html)
 
-自动化部署私有仓库到服务器或者源仓库就在服务器可使用`githooks` --> [githooks自动化部署]({{ site.baseurl }}/2020/06/09/githooks.html)
+## Environmental preparation
 
-## 环境准备
+This step is mainly to set the environment of the server and obtain the authorization of travis to github
 
-这步主要是设置服务器的环境和travis对github的授权获取
+### server
 
-### 服务器
+The server can use Alibaba Cloud or Tencent Cloud. The configuration can basically go to the minimum configuration. Most of the time, only one nginx is run. The system selects ubuntu or centos. The following uses Alibaba Cloud of ubuntu18.04 as an example
 
-服务器使用阿里云或者腾讯云都可以,配置基本可以走最低配置,大多数时候只跑一个nginx而已.系统选择`ubuntu`或者`centos`.下面以`ubuntu18.04`的阿里云为例
-
-登录服务器以后先更新系统
+Update the system after logging into the server
 
 ```shell
 root# apt update 
 root# apt upgrade
 ```
 
-为了避免安全风险,应该先建立一个带有sudo权限的普通用户部署博客.按照[linux新建用户里面的方法]({{ site.baseurl }}/2020/06/05/add-user.html)新建.
-之后所有操作切换到普通用户进行.
+In order to avoid security risks, an ordinary user with sudo privileges should be established to deploy the blog. Follow the method in [Linux New User] ({{ site.baseurl }}/2020/06/05/add-user.html) .
+After that, all operations are switched to ordinary users.
 
 ### git
 
-服务器上需要安装`git`工具
+The git tool needs to be installed on the server
 
 ```shell
 $ sudo apt install git
 ```
 
-克隆你的blog到服务器
+Clone your blog to the server
 
 ```shell
 $ cd ${workspace}
 $ git clone git@github.com:/${user}/&{your-blog}.git
 ```
 
-github上的该仓库需要设置成开源,`travis`对私有项目部署是收费的
+The repository on github needs to be set up as open source, `travis` is charged for private project deployment
 
 ### ruby
 
-在服务器上安装`ruby`环境请参考[Ruby安装使用]({{ site.baseurl }}/2020/06/05/ruby.html)
+To install `ruby` environment on the server, please refer to [Ruby Installation and Use]({{ site.baseurl }}/2020/06/05/ruby.html)
 
-安装完以后需要安装三个`ruby`包
+After installation, you need to install three `ruby` packages
 
 ```shell
 $ gem install jekyll bundler travis
 ```
 
-其他的包后续使用`bundle install`可以自动完成
+Subsequent use of `bundle install` for other packages can be done automatically
 
 ### nginx
 
-`ngix`在服务器上的安装与设置请参考[Nginx安装配置]({{ site.baseurl }}/2020/06/06/nginx.html)
+Subsequent use of `bundle install` for other packages can be done automatically
 
-配置好环境以后,`root`的路径先不用配置
+After configuring the environment, the root path does not need to be configured first
 
 ### ssh
 
-`ssh`在服务器上的安装请参照[ssh安装使用]({{ site.baseurl }}/2020/05/30/ssh.html)
+For the installation of `ssh` on the server, please refer to [ssh installation and use] ({{ site.baseurl }}/2020/05/30/ssh.html)
 
-然后生成一对秘钥待使用
+Then generate a pair of keys for use
 
 ### travis
 
-首先要使用github登录[travis](https://www.travis-ci.org/).打开`setting`
+First use github to log in [travis] (https://www.travis-ci.org/). Open `setting`
 
-然后同步账号的仓库信息
+Then synchronize the warehouse information of the account
 
 ![travis-sync-account]({{ site.baseurl }}/assets/images/miscellaneous/travis-sync-account.png)
 
-接着打开你要自动部署的仓库
+Then open the warehouse you want to deploy automatically
 
 ![travis-open-repo]({{ site.baseurl }}/assets/images/miscellaneous/travis-open-repo.png)
 
-## 实现自动部署
+## Implement automatic deployment
 
-切换到你的blog路径
+Switch to your blog path
 
 ```shell
 $ cd ${workspace}/${your-blog}
 ```
 
-### 基本自动部署脚本
+### Basic automatic deployment script
 
-新建`.travls.yml`
+new a file name `.travls.yml`
 
 ```shell
 $ vim .travis.yml
@@ -142,33 +141,33 @@ Username: ${your/github/user}
 password: {your/github/password}
 ```
 
-出现`success`就是登录成功
+"Success" appears to indicate successful login
 
 
-### 生成保密key
+### Generate secret key
 
 ```shell
 $ travis encrypt-file ~/.ssh/id_rsa --add
 ```
+Follow the prompts, the id_rsa.enc file will be generated, and it will be generated in the .travis file:
 
-按照提示操作,就会生成`id_rsa.enc`文件,同时在`.travis`文件里会生成
 ```yml
 before_install:
 - openssl aes-256-cbc -K $encrypted_ebb8fbb5669e_key -iv $encrypted_ebb8fbb5669e_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
 ```
 
-### 设置自动部署脚本
+### Set up an automatic deployment script
 
-travis检测到新提交并成功`isntall`以后,登录服务器,进行我们自动部署的步骤
+After travis detects the new submission and successfully isntall, log in to the server and perform our automatic deployment steps
 
-这里我在根目录新建`.travis`目录,把travis相关文件放置到这个文件夹下
+Here I create a new `.travis` directory in the root directory and place travis related files under this folder
 
 ```shell
 $ mv id_rsa.enc .travis
 ```
 
-修改`.travis.yml`文件
+Modify `.travis.yml` file
 
 ```yml
 before_install:
@@ -177,7 +176,7 @@ before_install:
 
 ```
 
-修改为
+change into:
 
 ```yml
 before_install:
@@ -186,7 +185,7 @@ before_install:
 
 ```
 
-在文件最后新增`after_success`:
+Add `after_success` at the end of the file:
 
 ```yml
 atfer_success:
@@ -194,14 +193,14 @@ atfer_success:
 - ssh {user}@xx.x.xx.x -o StrictHostKeyChecking=no 'cd ~/blog/Avalon && bash .travis/deploy.sh && exit'
 ```
 
-在`.travis`文件加下新建deploy.sh脚本
+Add a new deploy.sh script under the `.travis` file
 
 ```shell
 
 $ vim .travis/deploy.sh
 ```
 
-内容如下
+The content is as follows
 
 ```shell
 set -euxo pipefail
@@ -220,9 +219,9 @@ git pull origin master
 exit 0
 ```
 
-### nginx部署
+### nginx deployment
 
-在`nginx`配置文件中将目录指向编译生成的`_site`
+In the `nginx` configuration file, point the directory to the `_site` generated by the compilation
 
 ```shell
 location / {
@@ -232,30 +231,31 @@ location / {
 
 ```
 
-自此,整个自动部署流程就结束了,之后每次push代码,`travis`都会自动检测并登录服务器进行更新
+Since then, the entire automatic deployment process has ended, and every time you push the code, `travis` will automatically detect and log in to the server to update
 
-# 部署到github pages
+# Deploy to github pages
 
-## 简述
+## Brief description
 
-1. 授权`travis`读写和监测仓库的权限
-2. 本地到push代码到远程触发`travis`
-3. `travis`编译完以后push到仓库的'gh-pages'分支
-4. githubio完成部署
+1. Authorize `travis` to read, write, and monitor warehouse permissions
+2. Local to push code to remote trigger `travis`
+3. After `travis` is compiled, push to the'gh-pages' branch of the repository
+4. `githubio` completes deployment
 
-## 准备环境
+## Prepare the environment
 
-主要完成本地PC环境的部署和github对travis的授权
+Mainly complete the deployment of the local PC environment and github's authorization for travis
 
 ### ssh
 
-在本地安装`ssh`，将生成的公钥放上个github。请参照[ssh安装使用]({{ site.baseurl }}/2020/05/30/ssh.html)
+
+Install `ssh` locally and put the generated public key on github. Please refer to [ssh installation and use]({{ site.baseurl }}/2020/05/30/ssh.html)
 
 ### ruby
 
-在本地环境中安装`ruby`环境请参考[Ruby安装使用]({{ site.baseurl }}/2020/06/05/ruby.html)
+To install `ruby` in the local environment, please refer to [Ruby Installation and Use]({{ site.baseurl }}/2020/06/05/ruby.html)
 
-安装完需要在本地环境中安装3个`ruby`包
+After installation, you need to install 3 `ruby` packages in the local environment
 
 ```shell
 $ gem install jekyll bundler travis
@@ -263,79 +263,78 @@ $ gem install jekyll bundler travis
 
 ### git
 
-#### Repositories设置
+#### Repositories settings
 
-首先要在`github`上把项目设置成`public`,`travis`只对开源项目免费，然后将项目clone到本地
+First, set the project to `public` on `github`, `travis` is only free for open source projects, and then clone the project to the local
 
-**note** : 这里一定要使用`ssh`的方式clone下来,不能使用`https`.
+**note** : Here, you must use the `ssh` method to clone down, you cannot use `https`.
 
 ```shell
 $ cd ${workspace}
 $ git clone git@github.com:${user}/{your-blog}.git
 ```
-
-之后需要新建`gh-pages`分支,同时推送到远端
+After that, you need to create a new `gh-pages` branch and push it to the remote
 
 ```shell
 $ git branch gh-pages
 $ git push origin pg-pages
 ```
 
-#### 打开`github pages`
+#### open `github pages`
 
-打开仓库的setting
+Open the setting of git repository
 
 ![github-repo-setting]({{ site.baseurl }}/assets/images/miscellaneous/github-repo-setting.png)
 
-在列表中找到`github pages`,设置成`gh-pages`分支
+Find `github pages` in the list and set it to `gh-pages` branch
 
 ![github-pages-setting]({{ site.baseurl }}/assets/images/miscellaneous/github-pages-setting.png)
 
 
 ### travis
 
-首先要使用github登录[travis](https://www.travis-ci.org/).打开`setting`
+First use github to log in [travis] (https://www.travis-ci.org/). Open `setting`
 
-然后同步账号的仓库信息
+Then synchronize the warehouse information of the account
 
 ![travis-sync-account]({{ site.baseurl }}/assets/images/miscellaneous/travis-sync-account.png)
 
-接着打开你要自动部署的仓库
+Then open the warehouse you want to deploy automatically
 
 ![travis-open-repo]({{ site.baseurl }}/assets/images/miscellaneous/travis-open-repo.png)
 
 
-## 实现自动部署
+## Implement automatic deployment
 
-与部署到服务器不同,部署到`github pages`我们借用了`rake`实现自动部署
+Unlike deploying to a server, deploying to `github pages` we borrowed `rake` for automatic deployment
 
-### github生成新的`token`
+### github generates new `token`
 
-在使用`github`登陆`travis`时实际上已经生成了一个`token`,但是这个`token`没有写repo的权限，因此需要生成新的`token`
+When using `github` to log in `travis`, a `token` has actually been generated, but this `token` does not have permission to write repo, so a new `token` needs to be generated
 
-1. 打开`github`的`setting --> Development Settings`.
+1. Open `setting --> Development Settings` on `github`.
 
 ![github-setting]({{ site.baseurl }}/assets/images/miscellaneous/github-setting.png)
 
-2. 点击左边最底下的`Personal access token`,在右上角就会看到`Generate new token`.
+2. Click on `Personal access token` at the bottom of the left, and you will see `Generate new token` in the upper right corner.
 
 ![github-generate-token]({{ site.baseurl }}/assets/images/miscellaneous/github-generate-token.png)
 
-3. 为即将生成的新`token`设置`note`，相当于标识，或者别名
+3. Set a note for the new token to be generated, which is equivalent to an identifier, or an alias
 
 ![github-token-note]({{ site.baseurl }}/assets/images/miscellaneous/github-token-note.png)
 
-4. 设置`token`的权限
+4. Set permissions for `token`
 
 ![github-token-scopes]({{ site.baseurl }}/assets/images/miscellaneous/github-token-scopes.png)
 
-5.记下`token`的值，这个值只有第一次生成时会显示，之后就不会再显示了，因此生成时一定要复制下来
+5. Make a note of the value of `token`. This value will only be displayed when it is first generated, and will not be displayed afterwards, so it must be copied when it is generated.
 
 ![github-token-value.png]({{ site.baseurl }}/assets/images/miscellaneous/github-token-value.png)
 
-### `token`生成密钥
+### `token` generate key
 
-使用`git`账号登录`travis`
+Use `git` account to log in to `travis`
 
 ```shell
 $ travis login
@@ -349,8 +348,7 @@ Username: ${your/github/user}
 password: {your/github/password}
 ```
 
-
-利用`travis`的`ruby`包可以生成包含`token`的密钥
+Using the `ruby` package of `travis` can generate a key containing `token`
 
 ```shell
 $ travis encrypt 'GIT_NAME="${user}" GIT_EMAIL="${email}" GH_TOKEN=${token}'
@@ -365,12 +363,11 @@ Pro Tip: You can add it automatically by running with --add.
 
 ```
 
-保存這個`secure`值,在連接`travis`push生成的代碼到`gh-pages`分支時會使用這個`secure`,我們需要配置到`.travis.yml`文件裡面
+Save this `secure` value, this code will be used when connecting the code generated by `travis` push to the `gh-pages` branch, we need to configure it in the `.travis.yml` file
 
+### `.travis.yml` file
 
-### `.travis.yml`文件
-
-将刚才生成的`secure`放入`.travis.yml`文件中, 完整文件:
+Put the `secure` just generated in the `.travis.yml` file, the complete file:
 
 ```yml
 language: ruby
@@ -387,14 +384,14 @@ env:
     secure:"${secure}"
 ```
 
-编译和psuh的整个过程都通过`script: bundle exec rake deploy --quiet`交由`rake`完成
+The entire process of compilation and psuh is completed by `script: bundle exec rake deploy --quiet`
 
-
-### `rake`实现编译和push
+### `rake` to compile and push
 
 #### Rakefile
 
-在根目录下新建一个`Rakefile`
+
+Create a new `Rakefile` in the blog root directory
 
 ```ruby
 #############################################################################
@@ -470,16 +467,16 @@ end
 
 #### Gemfile
 
-添加`rake`到`Gemfile`中,这样子`bundle install`就会自动安装`rake`以及依赖.没有`Gemfile`则新建一个
+Add `rake` to `Gemfile` so that `bundle install` will automatically install `rake` and dependencies. If there is no `Gemfile` then create a new one
 
 ```ruby
 gem "rake"
 gem "github-pages", ">= 204"
 ```
 
-#### 修改`_config.yml`
+#### Modify `_config.yml`
 
-最后需要把`Rakefile`,`Gemfile`以及`.travisi.yml`等添加添加到配置文件的`exclude`.配置文件等不作为编译的内容
+Finally, you need to add `Rakefile`, `Gemfile`, `.travisi.yml`, etc. to the `exclude` of the configuration file. The configuration file, etc. are not used as compiled content
 
 ```yml
 exclude:
@@ -496,24 +493,24 @@ exclude:
 destination: ./build_site/
 ```
 
-新建一个`repo`变量,变量值为你的源码仓库的名字,在`rake`中push代码时会读取
+Create a new `repo` variable, the variable value is the name of your source repository, it will be read when pushing the code in `rake`
 
 ```yml
 repo: ${your-blog}
 ```
 
-现在,在本地push代码到github以后,travis就会自动部署到你的`github pages`,你的`github pages`地址为
+Now, after the local push code reaches github, travis will be automatically deployed to your `github pages`, your `github pages` address is
 
 ```
 https://${user}.github.io/${your-blog}
 
 ```
 
-# 完整源码
+# Complete source code
 
-## 服务器
+## server
 
-如果使用服务器部署,源码的模板如下
+If using server deployment, the source code template is as follows
 
 travis : [https://github.com/yan-wyb/source/tree/master/web/blog/jekyll/travis-to-server](https://github.com/yan-wyb/source/tree/master/web/blog/jekyll/travis-to-server)
 
@@ -521,14 +518,14 @@ nginx  : [https://github.com/yan-wyb/source/blob/master/web/nginx/nginx.conf](ht
 
 ## github Pages
 
-如果部署在`github pages`,模板如下
+If deployed on `github pages`, the template is as follows
 
 travis : [https://github.com/yan-wyb/source/tree/master/web/blog/jekyll/travis-to-github-pages](https://github.com/yan-wyb/source/tree/master/web/blog/jekyll/travis-to-github-pages)
 
 # **note**
 
-1. `gitlab`操作与`github`相同
+1. `gitlab` operation is the same as `github`
 
-2. 部署到github-pages的话,部署分支名字只能为`gh-pages`
+2. When deploying to github-pages, the deployment branch name can only be `gh-pages`
 
-3. 凡是`${ }`的都要替换
+3. Replace all "${ }` 
