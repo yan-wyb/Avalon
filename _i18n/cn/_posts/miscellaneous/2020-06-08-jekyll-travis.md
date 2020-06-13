@@ -509,9 +509,26 @@ https://${user}.github.io/${your-blog}
 
 ```
 
+# 完整源码
+
+## 服务器
+
+如果使用服务器部署,源码的模板如下
+
+travis : [https://github.com/yan-wyb/source/tree/master/web/blog/jekyll/travis-to-server](https://github.com/yan-wyb/source/tree/master/web/blog/jekyll/travis-to-server)
+
+nginx  : [https://github.com/yan-wyb/source/blob/master/web/nginx/nginx.conf](https://github.com/yan-wyb/source/blob/master/web/nginx/nginx.conf)
+
+## github Pages
+
+如果部署在`github pages`,模板如下
+
+travis : [https://github.com/yan-wyb/source/tree/master/web/blog/jekyll/travis-to-github-pages](https://github.com/yan-wyb/source/tree/master/web/blog/jekyll/travis-to-github-pages)
 
 # **note**
 
 1. `gitlab`操作与`github`相同
+
 2. 部署到github-pages的话,部署分支名字只能为`gh-pages`
+
 3. 凡是`${ }`的都要替换
