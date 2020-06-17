@@ -6,8 +6,8 @@ image: assets/images/linux/basic-linux/linux.jpg
 title: 压缩解压工具
 tags:
 categories: linux
-top-first: true
-top-twice: true
+top-first: false
+top-twice: flase
 first-level-classification: linux
 twice-level-classification: basic-linux
 permalink: /:year/:month/:day/:title:output_ext
