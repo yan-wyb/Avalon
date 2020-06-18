@@ -6,8 +6,8 @@ image: assets/images/linux/basic-linux/linux.jpg
 title: Compression and decompression tools
 tags:
 categories: linux
-top-first: true
-top-twice: true
+top-first: false
+top-twice: false
 first-level-classification: linux
 twice-level-classification: basic-linux
 permalink: /:year/:month/:day/:title:output_ext
