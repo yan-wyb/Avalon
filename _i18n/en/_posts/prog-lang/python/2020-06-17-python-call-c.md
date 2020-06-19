@@ -15,7 +15,7 @@ permalink: /:year/:month/:day/:title:output_ext
 
 Python mainly uses `ctype` to interface with C language, here is the commonly used docking method.
 
-## Data type comparison table
+# Data type comparison table
 
 ![python ctypes]({{ site.baseurl }}/assets/images/prog-lang/python/python-ctypes.png)
 
@@ -34,7 +34,7 @@ The C library can parse the so library, return the corresponding library object,
 c_so.func(arg1, arg2, ...)
 ```
 
-## Structure
+# Structure
 
 There is no concept of a structure in Python, so the only way is to design a corresponding class to correspond to the structure member of the structure when it is called.
 
@@ -71,7 +71,7 @@ typedef struct input_image {
 } input_image_t;
 ```
 
-## Enum
+# Enum
 
 ```python
 class class_name(Enum):
@@ -122,7 +122,7 @@ typedef enum {
 } det_pixel_format;
 ```
 
-## Function interface docking.
+# Function interface docking.
 
 1.Get the corresponding function interface 
 
@@ -177,10 +177,14 @@ exit:
 }
 ```
 
-## source code with example
+# source code with example
 
 Github: [https://github.com/yan-wyb/source/tree/master/python/ctypes](https://github.com/yan-wyb/source/tree/master/python/ctypes)
 
-## Official Manual
+# Official Manual
 
 Official Manual : [https://docs.python.org/3/library/ctypes.html](https://docs.python.org/3/library/ctypes.html)
+
+# issues
+
+If there are doubts or errors, please mention issues --> [Issues](https://github.com/yan-wyb/issues/issues)

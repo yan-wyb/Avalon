@@ -13,7 +13,7 @@ twice-level-classification: basic-linux
 permalink: /:year/:month/:day/:title:output_ext
 ---
 
-## Sougou Pinyin
+# Sougou Pinyin
 Ubuntu20.04 no longer supports QT4, so it originally relied on QT4's Sogou input method, and currently cannot be installed on 20.04,
 Currently, a community developer has extracted an available version from the customized version of the enterprise.
 
@@ -40,7 +40,7 @@ Click the `+` sign in the lower left corner, do not check `Only Show Current Lan
 
 ![Language Support Add]({{ site.baseurl }}/assets/images/linux/basic-linux/language-supports-add.png)
 
-## tweaks
+# tweaks
 
 tweaks is one of the best tools for managing UI.
 
@@ -58,7 +58,7 @@ Restart the software to configure the theme, icon, terminal style, wallpaper, et
 
 ![tweaks]({{ site.baseurl }}/assets/images/linux/basic-linux/tweaks.png)
 
-## docky
+# docky
 
 docky is a dock tool imitating IOS style.
 
@@ -83,7 +83,7 @@ $ cd ${workspace}
 $ rm *.deb
 ```
 
-## ScreenShot
+# ScreenShot
 
 There are many screenshot tools under Linux, but the screenshot tool that comes with the Gnome desktop is very easy to use.
 
@@ -102,7 +102,7 @@ Set as a shortcut key `Setting --> Keyboard`, click `+` to add a new shortcut ke
 ![shortcut screenshot]({{ site.baseurl }}/assets/images/linux/basic-linux/shortcut-screenshot.png)
 
 
-## VirtualBox
+# VirtualBox
 
 Ubuntu20.04 can be installed directly through the APT source to install the latest virtualBox.
 
@@ -123,10 +123,14 @@ $ sudo adduser $USER usbfs
 
 **note**: `source boot` cannot be opened in the BIOS, if it is opened, please close it and add `--reinstall` to reinstall.
 
-## Sublime Text
+# Sublime Text
 
 ```shell
 $ wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
 $ sudo apt-add-repository "deb https://download.sublimetext.com/ apt/stable/"
 $ sudo apt install sublime-text
 ```
+
+# issues
+
+If there are doubts or errors, please mention issues --> [Issues](https://github.com/yan-wyb/issues/issues)

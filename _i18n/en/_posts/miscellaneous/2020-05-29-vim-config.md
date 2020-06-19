@@ -15,7 +15,7 @@ permalink: /:year/:month/:day/:title:output_ext
 
 VIM editor configuration
 
-## Install VIM
+# Install VIM
 
 Install that using the system's package manager or software center. Take ubuntu as an example
 
@@ -31,7 +31,7 @@ $ cd vim/src
 $ make
 ```
 
-## VIM configuration file
+# VIM configuration file
 
 The VIM installed by default has no configuration file. Create one in the home directory with the file name `.vimrc`. Every time VIM starts, this configuration file is loaded in the home directory by default.
 
@@ -63,4 +63,8 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 endif
 
 ```
+
+# issues
+
+If there are doubts or errors, please mention issues --> [Issues](https://github.com/yan-wyb/issues/issues)
 

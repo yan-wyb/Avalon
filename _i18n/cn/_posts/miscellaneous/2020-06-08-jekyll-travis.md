@@ -532,3 +532,8 @@ travis : [https://github.com/yan-wyb/source/tree/master/web/blog/jekyll/travis-t
 2. 部署到github-pages的话,部署分支名字只能为`gh-pages`
 
 3. 凡是`${ }`的都要替换
+
+# issues
+
+如果有疑惑或错误,请提issues --> [Issues](https://github.com/yan-wyb/issues/issues)
+

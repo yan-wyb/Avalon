@@ -15,11 +15,11 @@ permalink: /:year/:month/:day/:title:output_ext
 
 python主要通过`ctype`与C语言进行接口对接,这里是常用的对接方法
 
-## 数据类型对照表
+# 数据类型对照表
 
 ![python ctypes]({{ site.baseurl }}/assets/images/prog-lang/python/python-ctypes.png)
 
-## 加载链接库
+# 加载链接库
 
 python调用C的函数,绝大多数情况都是调用的链接库文件里面的函数接口
 
@@ -33,7 +33,7 @@ c_so = CDLL('/path/to/c.so')
 c_so.func(arg1, arg2, ...)
 ```
 
-## 结构体
+# 结构体
 
 在python中是没有结构体概念的,所以唯一的方法就是设计一个相应的类,在调用时去对应结构体的结构体成员.
 
@@ -70,7 +70,7 @@ typedef struct input_image {
 } input_image_t;
 ```
 
-## 枚举
+# 枚举
 
 ```python
 class class_name(Enum):
@@ -121,7 +121,7 @@ typedef enum {
 } det_pixel_format;
 ```
 
-## 函数接口对接
+# 函数接口对接
 
 1.获取对应的函数接口 
 
@@ -176,10 +176,14 @@ exit:
 }
 ```
 
-## 示例源码
+# 示例源码
 
 Git地址: [https://github.com/yan-wyb/source/tree/master/python/ctypes](https://github.com/yan-wyb/source/tree/master/python/ctypes)
 
-## 官方手册
+# 官方手册
 
 官方手册 : [https://docs.python.org/3/library/ctypes.html](https://docs.python.org/3/library/ctypes.html)
+
+# issues
+
+如果有疑惑或错误,请提issues --> [Issues](https://github.com/yan-wyb/issues/issues)

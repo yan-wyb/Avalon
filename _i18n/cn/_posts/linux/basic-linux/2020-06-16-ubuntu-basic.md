@@ -13,7 +13,7 @@ twice-level-classification: basic-linux
 permalink: /:year/:month/:day/:title:output_ext
 ---
 
-## 搜狗输入法
+# 搜狗输入法
 
 Ubuntu20.04 不再支持QT4,所以原本依赖QT4的搜狗输入法,目前无法安装在20.04上,
 目前有一个社区开发者从企业定制版本中抽取出来了一个可用版本
@@ -42,7 +42,7 @@ $ sudo apt install ./sogouimebs.deb
 
 ![Language Support Add]({{ site.baseurl }}/assets/images/linux/basic-linux/language-supports-add.png)
 
-## tweaks
+# tweaks
 
 tweaks是用来管理UI的最好用的工具之一
 
@@ -60,7 +60,7 @@ $ sudo apt install gnome-tweak-tool
 
 ![tweaks]({{ site.baseurl }}/assets/images/linux/basic-linux/tweaks.png)
 
-## docky
+# docky
 
 docky是仿IOS风格的dock工具
 
@@ -85,7 +85,7 @@ $ cd ${workspace}
 $ rm *.deb
 ```
 
-## 截图
+# 截图
 
 linux下的截图工具很多,但是Gnome桌面自带的截图工具就非常好用
 
@@ -104,7 +104,7 @@ $ gnome-screenshot -a
 ![shortcut screenshot]({{ site.baseurl }}/assets/images/linux/basic-linux/shortcut-screenshot.png)
 
 
-## VirtualBox
+# VirtualBox
 
 ubuntu20.04通过APT源直接安装就可以安装最新的virtualBox
 
@@ -125,10 +125,14 @@ $ sudo adduser $USER usbfs
 
 **note**: BIOS中`source boot`不能打开,如果打开了请关闭后加上`--reinstall`重新安装
 
-## Sublime Text
+# Sublime Text
 
 ```shell
 $ wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
 $ sudo apt-add-repository "deb https://download.sublimetext.com/ apt/stable/"
 $ sudo apt install sublime-text
 ```
+
+# issues
+
+如果有疑惑或错误,请提issues --> [Issues](https://github.com/yan-wyb/issues/issues)

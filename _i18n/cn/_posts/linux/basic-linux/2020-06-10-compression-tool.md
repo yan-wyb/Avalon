@@ -13,7 +13,7 @@ twice-level-classification: basic-linux
 permalink: /:year/:month/:day/:title:output_ext
 ---
 
-## tar/gz/bz
+# tar/gz/bz
 
 这些是linux系统自带的解压
 
@@ -57,7 +57,7 @@ $ xz -d file.tar.xz --> tar xvf file.tar
 $ tar cvf file.tar file --> xz -z file.tar
 ```
 
-## rar
+# rar
 
 安装`rar`.以`APT`源为例
 
@@ -73,7 +73,7 @@ $ unrar e file.rar
 $ rar a file
 ```
 
-## 7z
+# 7z
 
 安装`7z`,以`APT`源为例
 
@@ -88,7 +88,7 @@ $ 7z x file.7z -r -o file
 $ 7z a -t7z -r file.7z file
 ```
 
-## zip/unzip
+# zip/unzip
 
 安装`zip/unzip`,以`APT`源为例
 
@@ -104,7 +104,7 @@ $ unzip file.zip
 ```
 
 
-## 超大文件压缩成多个文件
+# 超大文件压缩成多个文件
 
 ```shell
 $ rar a -v50m(50k) file.rar file
@@ -112,7 +112,9 @@ $ tar cjf - file |split -b 50m - file.tar.bz2
 $ 7z a file.7z file -v2048m
 ```
 
+# issues
 
+如果有疑惑或错误,请提issues --> [Issues](https://github.com/yan-wyb/issues/issues)
 
 
 

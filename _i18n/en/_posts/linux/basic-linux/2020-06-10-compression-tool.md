@@ -13,7 +13,7 @@ twice-level-classification: basic-linux
 permalink: /:year/:month/:day/:title:output_ext
 ---
 
-## tar/gz/bz
+# tar/gz/bz
 
 These are the decompression that comes with the linux system
 
@@ -57,7 +57,7 @@ $ xz -d file.tar.xz --> tar xvf file.tar
 $ tar cvf file.tar file --> xz -z file.tar
 ```
 
-## rar
+# rar
 
 Install `rar`. Take `APT` source as an example
 
@@ -73,7 +73,7 @@ $ unrar e file.rar
 $ rar a file
 ```
 
-## 7z
+# 7z
 
 Install `7z`, using `APT` source as an example
 
@@ -88,7 +88,7 @@ $ 7z x file.7z -r -o file
 $ 7z a -t7z -r file.7z file
 ```
 
-## zip/unzip
+# zip/unzip
 
 Install `zip/unzip`, using `APT` source as an example
 
@@ -105,7 +105,7 @@ $ unzip file.zip
 ```
 
 
-## Oversize files compressed into multiple files
+# Oversize files compressed into multiple files
 
 ```shell
 $ rar a -v50m(50k) file.rar file
@@ -113,7 +113,9 @@ $ tar cjf - file |split -b 50m - file.tar.bz2
 $ 7z a file.7z file -v2048m
 ```
 
+# issues
 
+If there are doubts or errors, please mention issues --> [Issues](https://github.com/yan-wyb/issues/issues)
 
 
 

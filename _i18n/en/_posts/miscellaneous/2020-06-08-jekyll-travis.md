@@ -528,4 +528,10 @@ travis : [https://github.com/yan-wyb/source/tree/master/web/blog/jekyll/travis-t
 
 2. When deploying to github-pages, the deployment branch name can only be `gh-pages`
 
-3. Replace all "${ }` 
+3. Replace all "${ }`
+
+# issues
+
+If there are doubts or errors, please mention issues --> [Issues](https://github.com/yan-wyb/issues/issues)
+
+
