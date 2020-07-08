@@ -133,6 +133,15 @@ $ sudo apt-add-repository "deb https://download.sublimetext.com/ apt/stable/"
 $ sudo apt install sublime-text
 ```
 
+# 串口工具添加USB权限
+
+```shell
+$ sudo usermod -a -G dialout $(whoami)
+```
+
+注销或者重启以后生效
+
+
 # issues
 
 如果有疑惑或错误,请提issues --> [Issues](https://github.com/yan-wyb/issues/issues)

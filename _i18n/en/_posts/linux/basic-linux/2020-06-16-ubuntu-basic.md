@@ -131,6 +131,14 @@ $ sudo apt-add-repository "deb https://download.sublimetext.com/ apt/stable/"
 $ sudo apt install sublime-text
 ```
 
+# Serial port tool to add USB permission
+
+```shell
+$ sudo usermod -a -G dialout $(whoami)
+```
+
+Effective after logout or restart
+
 # issues
 
 If there are doubts or errors, please mention issues --> [Issues](https://github.com/yan-wyb/issues/issues)
