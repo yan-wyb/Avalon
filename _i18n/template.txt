@@ -19,4 +19,4 @@ permalink: /:year/:month/:day/:title:output_ext
 # issues
 
 如果有疑惑或错误,请提issues --> [Issues](https://github.com/yan-wyb/issues/issues)
-If there are doubts or errors, please mention issues --> [Issues](https://github.com/yan-wyb/issues/issues)
+If there are doubts or errors, please submit an issue --> [Issues](https://github.com/yan-wyb/issues/issues)
