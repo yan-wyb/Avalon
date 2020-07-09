@@ -78,7 +78,7 @@ $ rar a file
 安装`7z`,以`APT`源为例
 
 ```shell
-$ sudo apt-get install p7zip
+$ sudo apt install p7zip-full
 ```
 
 解压与压缩

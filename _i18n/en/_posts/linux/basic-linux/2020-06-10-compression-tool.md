@@ -78,7 +78,7 @@ $ rar a file
 Install `7z`, using `APT` source as an example
 
 ```shell
-$ sudo apt-get install p7zip
+$ sudo apt install p7zip-full
 ```
 
 Unzip and compress
