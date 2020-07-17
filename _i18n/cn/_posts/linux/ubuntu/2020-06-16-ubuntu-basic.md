@@ -2,14 +2,14 @@
 layout: post
 author: Yan 
 toc: true
-image: assets/images/linux/basic-linux/ubuntu-logo.jpg
+image: assets/images/linux/ubuntu/ubuntu-logo.jpg
 title: Ubuntu 20.04 配置
 tags:
 categories: linux
 top-first: true
 top-twice: true
 first-level-classification: linux
-twice-level-classification: basic-linux
+twice-level-classification: ubuntu
 permalink: /:year/:month/:day/:title:output_ext
 ---
 
@@ -27,20 +27,20 @@ $ sudo apt install ./sogouimebs.deb
 
 系统会自动安装依赖,其中就包括`fcitx`.接下来设置 --> 打开`Language Supports`.
 
-![Language Supports icon]({{ site.baseurl }}/assets/images/linux/basic-linux/language-supports-icon.png)
+![Language Supports icon]({{ site.baseurl }}/assets/images/linux/ubuntu/language-supports-icon.png)
 
 将`Keyboard imput method system`设置成`fcitx`.
 
-![Language Supports]({{ site.baseurl }}/assets/images/linux/basic-linux/language-supports.png)
+![Language Supports]({{ site.baseurl }}/assets/images/linux/ubuntu/language-supports.png)
 
 然后重启,就会在右上角看到键盘的设置.
 
-![Language Supports Setting]({{ site.baseurl }}/assets/images/linux/basic-linux/language-supports-setting.png)
+![Language Supports Setting]({{ site.baseurl }}/assets/images/linux/ubuntu/language-supports-setting.png)
 
 
 点击左下角的`+`号,不要勾选`Only Show Current Language`.搜索`sogou`,点击添加
 
-![Language Support Add]({{ site.baseurl }}/assets/images/linux/basic-linux/language-supports-add.png)
+![Language Support Add]({{ site.baseurl }}/assets/images/linux/ubuntu/language-supports-add.png)
 
 # tweaks
 
@@ -54,11 +54,11 @@ $ sudo apt install gnome-tweak-tool
 
 配置以后先打开`user themes`,然后重启软件,
 
-![tweaks user themes]({{ site.baseurl }}/assets/images/linux/basic-linux/tweaks-user-themes.png)
+![tweaks user themes]({{ site.baseurl }}/assets/images/linux/ubuntu/tweaks-user-themes.png)
 
 重启软件就可以配置主题,图标,终端风格,壁纸等
 
-![tweaks]({{ site.baseurl }}/assets/images/linux/basic-linux/tweaks.png)
+![tweaks]({{ site.baseurl }}/assets/images/linux/ubuntu/tweaks.png)
 
 # docky
 
@@ -76,7 +76,7 @@ $ wget http://archive.ubuntu.com/ubuntu/pool/universe/d/docky/docky_2.2.1.1-1_al
 $ sudo apt-get install ./docky_2.2.1.1-1_all.deb
 ```
 
-![docky]({{ site.baseurl }}/assets/images/linux/basic-linux/docky.png)
+![docky]({{ site.baseurl }}/assets/images/linux/ubuntu/docky.png)
 
 安装完成以后,可以删除下载的`deb`
 
@@ -101,7 +101,7 @@ $ gnome-screenshot -a
 
 设置成快捷键 `Setting --> Keyboard`,点击`+`添加一个新的快捷键,填入`name`和`command`
 
-![shortcut screenshot]({{ site.baseurl }}/assets/images/linux/basic-linux/shortcut-screenshot.png)
+![shortcut screenshot]({{ site.baseurl }}/assets/images/linux/ubuntu/shortcut-screenshot.png)
 
 
 # VirtualBox

@@ -2,14 +2,14 @@
 layout: post
 author: Yan 
 toc: true
-image: assets/images/linux/basic-linux/ubuntu-logo.jpg
+image: assets/images/linux/ubuntu/ubuntu-logo.jpg
 title: Ubuntu 20.04 Configiure
 tags:
 categories: linux
 top-first: true
 top-twice: true
 first-level-classification: linux
-twice-level-classification: basic-linux
+twice-level-classification: ubuntu
 permalink: /:year/:month/:day/:title:output_ext
 ---
 
@@ -26,19 +26,19 @@ $ sudo apt install ./sogouimebs.deb
 
 The system will automatically install dependencies, including `fcitx`. Next set --> open `Language Supports`.
 
-![Language Supports icon]({{ site.baseurl }}/assets/images/linux/basic-linux/language-supports-icon.png)
+![Language Supports icon]({{ site.baseurl }}/assets/images/linux/ubuntu/language-supports-icon.png)
 
 Set `Keyboard input method system` to `fcitx`.
 
-![Language Supports]({{ site.baseurl }}/assets/images/linux/basic-linux/language-supports.png)
+![Language Supports]({{ site.baseurl }}/assets/images/linux/ubuntu/language-supports.png)
 
 Then restart, you will see the fcitx settings in the upper right corner.
 
-![Language Supports Setting]({{ site.baseurl }}/assets/images/linux/basic-linux/language-supports-setting.png)
+![Language Supports Setting]({{ site.baseurl }}/assets/images/linux/ubuntu/language-supports-setting.png)
 
 Click the `+` sign in the lower left corner, do not check `Only Show Current Language`. Search for `sogou`, and click add.
 
-![Language Support Add]({{ site.baseurl }}/assets/images/linux/basic-linux/language-supports-add.png)
+![Language Support Add]({{ site.baseurl }}/assets/images/linux/ubuntu/language-supports-add.png)
 
 # tweaks
 
@@ -52,11 +52,11 @@ $ sudo apt install gnome-tweak-tool
 
 After configuration, first open the user themes, and then restart the software,
 
-![tweaks user themes]({{ site.baseurl }}/assets/images/linux/basic-linux/tweaks-user-themes.png)
+![tweaks user themes]({{ site.baseurl }}/assets/images/linux/ubuntu/tweaks-user-themes.png)
 
 Restart the software to configure the theme, icon, terminal style, wallpaper, etc.
 
-![tweaks]({{ site.baseurl }}/assets/images/linux/basic-linux/tweaks.png)
+![tweaks]({{ site.baseurl }}/assets/images/linux/ubuntu/tweaks.png)
 
 # docky
 
@@ -74,7 +74,7 @@ $ wget http://archive.ubuntu.com/ubuntu/pool/universe/d/docky/docky_2.2.1.1-1_al
 $ sudo apt-get install ./docky_2.2.1.1-1_all.deb
 ```
 
-![docky]({{ site.baseurl }}/assets/images/linux/basic-linux/docky.png)
+![docky]({{ site.baseurl }}/assets/images/linux/ubuntu/docky.png)
 
 After the installation is complete, you can delete the downloaded `deb`.
 
@@ -99,7 +99,7 @@ $ gnome-screenshot -a
 
 Set as a shortcut key `Setting --> Keyboard`, click `+` to add a new shortcut key, fill in `name` and `command`.
 
-![shortcut screenshot]({{ site.baseurl }}/assets/images/linux/basic-linux/shortcut-screenshot.png)
+![shortcut screenshot]({{ site.baseurl }}/assets/images/linux/ubuntu/shortcut-screenshot.png)
 
 
 # VirtualBox
