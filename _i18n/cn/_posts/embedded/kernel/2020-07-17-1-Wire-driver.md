@@ -5,7 +5,7 @@ toc: true
 image: assets/images/embedded/kernel/1-Wire-logo.png
 title: 增加单总线支持
 tags:
-categories: kernel
+categories: [kernel, dts]
 top-first: true
 top-twice: true
 first-level-classification: embedded

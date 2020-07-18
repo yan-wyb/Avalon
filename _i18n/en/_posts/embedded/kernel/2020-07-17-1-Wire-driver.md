@@ -5,7 +5,7 @@ toc: true
 image: assets/images/embedded/kernel/1-Wire-logo.png
 title: Add 1-Wire driver supports
 tags:
-categories: kernel
+categories: [kernel, dts]
 top-first: true
 top-twice: true
 first-level-classification: embedded
