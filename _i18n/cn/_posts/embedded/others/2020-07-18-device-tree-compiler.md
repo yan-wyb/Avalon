@@ -27,7 +27,7 @@ $ sudo apt-get install device-tree-compiler
 
 dtc命令用于编译`dts`和反编译`dtb`
 
-## dts编译成dtb
+## dtb反编译成dts
 
 ```shell
 $ cd ${workspace} && ls
@@ -46,7 +46,7 @@ $ dtc -I dtb -O dts filename.dtb > filename.dts
 $ dtc filename.dtb > filename.dts
 ```
 
-## dtb反编译成dts
+## dts编译成dtb
 
 ```shell
 $ cd ${workspace} && ls

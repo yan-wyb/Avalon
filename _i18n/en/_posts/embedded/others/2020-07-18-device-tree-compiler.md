@@ -27,7 +27,7 @@ $ sudo apt-get install device-tree-compiler
 
 `dtc` tool use for  compile `dts` and decompile `dtb`
 
-## dts compile to dtb
+## dtb decompile to dts
 
 ```shell
 $ cd ${workspace} && ls
@@ -46,7 +46,7 @@ or,
 $ dtc filename.dtb > filename.dts
 ```
 
-## dtb decompile to dts
+## dts decompile to dtb
 
 ```shell
 $ cd ${workspace} && ls
