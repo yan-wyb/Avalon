@@ -2,7 +2,7 @@
 layout: page
 title: Time is always silent and it takes time for flowers to bloom . Must be patient . 
 permalink: /all/index.html
-first-level-classification: [linux,embedded,algorithm,prog-lang,ai,miscellaneous]
+first-level-classification: [linux,embedded,algorithm,prog-lang,ai,miscellaneous,message]
 ---
 
 <!-- Posts Index
@@ -138,6 +138,30 @@ first-level-classification: [linux,embedded,algorithm,prog-lang,ai,miscellaneous
   <div class="row listrecent">
 
    {% assign posts=site.posts | where:"first-level-classification",page.first-level-classification[5] %}
+   {% for post in posts reversed %}
+    {% if post.top-first == true %}
+
+    {% include postbox.html %}
+
+    {% endif %}
+
+   {% endfor %}
+
+  </div>
+
+</section>
+
+<section class="recent-posts">
+
+ <div class="section-title">
+
+  <h2><a class="nav-link" href="{{ site.baseurl }}/message/index.html"><span>Message</span></a></h2>
+
+ </div>
+
+  <div class="row listrecent">
+
+   {% assign posts=site.posts | where:"first-level-classification",page.first-level-classification[6] %}
    {% for post in posts reversed %}
     {% if post.top-first == true %}
 
