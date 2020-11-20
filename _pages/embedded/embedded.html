@@ -3,7 +3,7 @@ layout: page
 title: Time is always silent and it takes time for flowers to bloom . Must be patient .
 permalink: /embedded/index.html
 first-level-classification: embedded
-twice-level-classification: [combine,uboot,kernel,buildroot,others]
+twice-level-classification: [combine,uboot,kernel,buildroot,application,others]
 ---
 
 <!-- Posts Index
@@ -96,12 +96,33 @@ twice-level-classification: [combine,uboot,kernel,buildroot,others]
 
  <div class="section-title">
 
-  <h2><a class="nav-link" href="{{ site.baseurl }}/embedded/others/index.html"><span>others</span></a></h2>
+  <h2><a class="nav-link" href="{{ site.baseurl }}/embedded/application/index.html"><span>Application</span></a></h2>
 
  </div>
 
   <div class="row listrecent">
    {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[4] %}
+   {% for post in posts reversed %}
+   {% if post.top-twice == true %}
+
+    {% include postbox.html %}
+
+   {% endif %}
+   {% endfor %}
+
+  </div>
+
+</section>
+<section class="recent-posts">
+
+ <div class="section-title">
+
+  <h2><a class="nav-link" href="{{ site.baseurl }}/embedded/others/index.html"><span>others</span></a></h2>
+
+ </div>
+
+  <div class="row listrecent">
+   {% assign posts=site.posts | where:"twice-level-classification",page.twice-level-classification[5] %}
    {% for post in posts reversed %}
    {% if post.top-twice == true %}
 
