@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="icon" href="/en/assets/images/logo.png">
+
+<title>Ubuntu 20.04 Configiure | Avalon</title>
+
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Ubuntu 20.04 Configiure | Avalon</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Ubuntu 20.04 Configiure" />
+<meta name="author" content="Yan" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Sougou Pinyin Ubuntu20.04 no longer supports QT4, so it originally relied on QT4’s Sogou input method, and currently cannot be installed on 20.04, Currently, a community developer has extracted an available version from the customized version of the enterprise." />
+<meta property="og:description" content="Sougou Pinyin Ubuntu20.04 no longer supports QT4, so it originally relied on QT4’s Sogou input method, and currently cannot be installed on 20.04, Currently, a community developer has extracted an available version from the customized version of the enterprise." />
+<meta property="og:site_name" content="Avalon" />
+<meta property="og:image" content="/en/assets/images/linux/ubuntu/ubuntu-logo.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-16T00:00:00+08:00" />
+<script type="application/ld+json">
+{"headline":"Ubuntu 20.04 Configiure","dateModified":"2021-07-12T18:42:06+08:00","datePublished":"2020-06-16T00:00:00+08:00","image":"/en/assets/images/linux/ubuntu/ubuntu-logo.jpg","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/en/assets/images/logo.png"},"name":"Yan"},"mainEntityOfPage":{"@type":"WebPage","@id":"/en/2020/06/16/ubuntu-basic.html"},"url":"/en/2020/06/16/ubuntu-basic.html","author":{"@type":"Person","name":"Yan"},"description":"Sougou Pinyin Ubuntu20.04 no longer supports QT4, so it originally relied on QT4’s Sogou input method, and currently cannot be installed on 20.04, Currently, a community developer has extracted an available version from the customized version of the enterprise.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link href="/en/assets/css/bootstrap2.min.css" rel="stylesheet">
+
+<link href="/en/assets/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="/en/assets/css/screen.css" rel="stylesheet">
+
+<link href="/en/assets/css/main.css" rel="stylesheet">
+
+<link rel="stylesheet" href="/en/assets/css/all.css">
+
+<script src="/en/assets/js/jquery.min.js"></script>
+
+<script src="/en/assets/js/bootstrap.min.js"></script>
+
+</head>
+
+
+<!-- change your GA id in _config.yml -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', '', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+<body class="layout-post">
+	<!-- defer loading of font and font awesome -->
+	<noscript id="deferred-styles">
+		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	</noscript>
+
+
+<!-- Begin Menu Navigation
+================================================== -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+
+    <div class="container pr-0">
+
+    <!-- Begin Logo -->
+    <a class="navbar-brand" href="/en/">
+    <img src="/en/assets/images/logo.png" alt="Avalon">
+    </a>
+    <!-- End Logo -->
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMediumish">
+
+        <!-- Begin Menu -->
+
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                <a class="nav-link" href="/en/linux/index.html">Linux</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/en/embedded/index.html">Embedded</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/en/algorithm/index.html">Algorithm</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/en/prog-lang/index.html">Prog-lang</a>
+
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/en/ai/index.html">AI</a>
+                </li>
+
+				</li>
+                <li class="nav-item">
+                <a class="nav-link" href="/en/miscellaneous/index.html">Miscellaneous</a>
+                </li>
+
+				</li>
+                <li class="nav-item">
+                <a class="nav-link" href="/en/message/index.html">Message</a>
+                </li>
+
+                <li class="nav-item">
+                <a target="_blank" class="nav-link" href="https://github.com/yan-wyb"><i class="fab fa-github"></i>Github</a>
+                </li>
+
+                <script src="/en/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/en/assets/js/lunrsearchengine.js"></script>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/en/about/index.html">About</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">language</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/2020/06/16/ubuntu-basic.html">中文</a>
+                        <a class="dropdown-item" href="/en/2020/06/16/ubuntu-basic.html">English</a>
+                    </div>
+                </li>
+
+            </ul>
+
+        <!-- End Menu -->
+
+    </div>
+
+    </div>
+</nav>
+<!-- End Navigation
+================================================== -->
+
+<div class="site-content">
+
+<div class="container">
+
+<!-- Site Title
+================================================== -->
+<div class="mainheading">
+    <h1 class="sitetitle">Avalon</h1>
+    <p class="lead">
+        Garden of Avalon.
+    </p>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="main-content">
+    <!-- Begin Article
+================================================== -->
+<div class="container col-xl-auto">
+    <div class="row">
+
+        <!-- Post Share -->
+        <div class="col-xl-1 pl-0">
+            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=Ubuntu 20.04 Configiure&url=/en/2020/06/16/ubuntu-basic.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://facebook.com/sharer.php?u=/en/2020/06/16/ubuntu-basic.html" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=/en/2020/06/16/ubuntu-basic.html" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+
+        </div>
+
+        <!-- Post -->
+        
+
+        <div class="col-md-8 ">
+            <div class="mainheading">
+
+                <!-- Author Box -->
+                
+                <div class="row post-top-meta">
+                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                        
+                        <img class="author-thumb" src="/en/assets/images/Yan.png" alt="Yan">
+                        
+                    </div>
+                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                        <a target="_blank" class="link-dark" href="www.yan-wyb.com">Yan</a><a target="_blank" href="" class="btn follow">Follow</a>
+                        <span class="author-description">Just a simple man.</span>
+                    </div>
+                </div>
+                
+
+                <!-- Post Title -->
+                <h1 class="posttitle">Ubuntu 20.04 Configiure</h1>
+
+            </div>
+
+            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+            
+            <!-- End Adsense -->
+
+            <!-- Post Featured Image -->
+            
+
+            
+            <img class="featured-image img-fluid" src="/en/assets/images/linux/ubuntu/ubuntu-logo.jpg" alt="Ubuntu 20.04 Configiure">
+            
+
+            
+            <!-- End Featured Image -->
+
+            <!-- Post Content -->
+            <div class="article-post">
+                <h1 id="sougou-pinyin">Sougou Pinyin</h1>
+<p>Ubuntu20.04 no longer supports QT4, so it originally relied on QT4’s Sogou input method, and currently cannot be installed on 20.04,
+Currently, a community developer has extracted an available version from the customized version of the enterprise.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">cd</span> <span class="k">${</span><span class="nv">workspace</span><span class="k">}</span>
+<span class="nv">$ </span>wget https://github.com/yan-wyb/somethingelse/raw/master/tools/sogouimebs.deb
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install</span> ./sogouimebs.deb
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The system will automatically install dependencies, including <code class="highlighter-rouge">fcitx</code>. Next set –&gt; open <code class="highlighter-rouge">Language Supports</code>.</p>
+
+<p><img src="/en/assets/images/linux/ubuntu/language-supports-icon.png" alt="Language Supports icon" /></p>
+
+<p>Set <code class="highlighter-rouge">Keyboard input method system</code> to <code class="highlighter-rouge">fcitx</code>.</p>
+
+<p><img src="/en/assets/images/linux/ubuntu/language-supports.png" alt="Language Supports" /></p>
+
+<p>Then restart, you will see the fcitx settings in the upper right corner.</p>
+
+<p><img src="/en/assets/images/linux/ubuntu/language-supports-setting.png" alt="Language Supports Setting" /></p>
+
+<p>Click the <code class="highlighter-rouge">+</code> sign in the lower left corner, do not check <code class="highlighter-rouge">Only Show Current Language</code>. Search for <code class="highlighter-rouge">sogou</code>, and click add.</p>
+
+<p><img src="/en/assets/images/linux/ubuntu/language-supports-add.png" alt="Language Support Add" /></p>
+
+<h1 id="tweaks">tweaks</h1>
+
+<p>tweaks is one of the best tools for managing UI.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">sudo </span>apt upate
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>gnome-shell-extensions
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>gnome-tweak-tool 
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>After configuration, first open the user themes, and then restart the software,</p>
+
+<p><img src="/en/assets/images/linux/ubuntu/tweaks-user-themes.png" alt="tweaks user themes" /></p>
+
+<p>Restart the software to configure the theme, icon, terminal style, wallpaper, etc.</p>
+
+<p><img src="/en/assets/images/linux/ubuntu/tweaks.png" alt="tweaks" /></p>
+
+<h1 id="docky">docky</h1>
+
+<p>docky is a dock tool imitating IOS style.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">cd</span> <span class="k">${</span><span class="nv">workspace</span><span class="k">}</span>
+<span class="nv">$ </span>wget http://archive.ubuntu.com/ubuntu/pool/universe/g/gnome-sharp2/libgconf2.0-cil_2.24.2-4_all.deb
+<span class="nv">$ </span>wget http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/multiarch-support_2.27-3ubuntu1_amd64.deb
+<span class="nv">$ </span>wget http://archive.ubuntu.com/ubuntu/pool/universe/libg/libgnome-keyring/libgnome-keyring-common_3.12.0-1build1_all.deb
+<span class="nv">$ </span>wget http://archive.ubuntu.com/ubuntu/pool/universe/libg/libgnome-keyring/libgnome-keyring0_3.12.0-1build1_amd64.deb
+<span class="nv">$ </span>wget http://archive.ubuntu.com/ubuntu/pool/universe/g/gnome-keyring-sharp/libgnome-keyring1.0-cil_1.0.0-5_amd64.deb
+<span class="nv">$ </span><span class="nb">sudo </span>apt-get <span class="nb">install</span> ./<span class="k">*</span>.deb
+<span class="nv">$ </span>wget http://archive.ubuntu.com/ubuntu/pool/universe/d/docky/docky_2.2.1.1-1_all.deb
+<span class="nv">$ </span><span class="nb">sudo </span>apt-get <span class="nb">install</span> ./docky_2.2.1.1-1_all.deb
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><img src="/en/assets/images/linux/ubuntu/docky.png" alt="docky" /></p>
+
+<p>After the installation is complete, you can delete the downloaded <code class="highlighter-rouge">deb</code>.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">cd</span> <span class="k">${</span><span class="nv">workspace</span><span class="k">}</span>
+<span class="nv">$ </span><span class="nb">rm</span> <span class="k">*</span>.deb
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="screenshot">ScreenShot</h1>
+
+<p>There are many screenshot tools under Linux, but the screenshot tool that comes with the Gnome desktop is very easy to use.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>gnome-screenshot
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Only want to take a screenshot, you can bring the <code class="highlighter-rouge">-a</code> parameter.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>gnome-screenshot <span class="nt">-a</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Set as a shortcut key <code class="highlighter-rouge">Setting --&gt; Keyboard</code>, click <code class="highlighter-rouge">+</code> to add a new shortcut key, fill in <code class="highlighter-rouge">name</code> and <code class="highlighter-rouge">command</code>.</p>
+
+<p><img src="/en/assets/images/linux/ubuntu/shortcut-screenshot.png" alt="shortcut screenshot" /></p>
+
+<h1 id="virtualbox">VirtualBox</h1>
+
+<p>Ubuntu20.04 can be installed directly through the APT source to install the latest virtualBox.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">sudo </span>apt update
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>build-essential
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>virtualbox
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>virtualbox-ext-pack
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Set USB read and write permissions.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">sudo </span>groupadd usbfs
+<span class="nv">$ </span><span class="nb">sudo </span>adduser <span class="nv">$USER</span> vboxusers
+<span class="nv">$ </span><span class="nb">sudo </span>adduser <span class="nv">$USER</span> usbfs
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>note</strong>: <code class="highlighter-rouge">source boot</code> cannot be opened in the BIOS, if it is opened, please close it and add <code class="highlighter-rouge">--reinstall</code> to reinstall.</p>
+
+<h1 id="sublime-text">Sublime Text</h1>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>wget <span class="nt">-qO</span> - https://download.sublimetext.com/sublimehq-pub.gpg | <span class="nb">sudo </span>apt-key add -
+<span class="nv">$ </span><span class="nb">sudo </span>apt-add-repository <span class="s2">"deb https://download.sublimetext.com/ apt/stable/"</span>
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>sublime-text
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="serial-port-tool-to-add-usb-permission">Serial port tool to add USB permission</h1>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">sudo </span>usermod <span class="nt">-a</span> <span class="nt">-G</span> dialout <span class="si">$(</span><span class="nb">whoami</span><span class="si">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Effective after logout or restart</p>
+
+<h1 id="issues">issues</h1>
+
+<p>If there are doubts or errors, please mention issues –&gt; <a href="https://github.com/yan-wyb/issues/issues">Issues</a></p>
+
+            </div>
+
+            <!-- Rating -->
+            
+
+            <!-- Post Categories -->
+            <div class="after-post-cats">
+                <ul class="tags mb-4">
+                    
+                    
+                    <li>
+                        <a class="smoothscroll" href="/en/categories#linux">linux</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Post Tags -->
+            <div class="after-post-tags">
+                <ul class="tags">
+                    
+                    
+                </ul>
+            </div>
+            <!-- End Tags -->
+
+        </div>
+        <!-- End Post -->
+
+        <div class="col-xl-3 pl-0">
+            <div class="share-yan sticky-top sticky-top-offset text-left">
+                <div class="text-left text-md-left">
+				    <a>Back to</a>
+				</div>
+
+				
+			    <div class="text-left text-md-left">
+				    <h3><a class="text-left text-md-left" href="/en/linux/ubuntu/index.html">ubuntu</a></h3>
+				</div>
+				
+
+				<div class="text-left text-md-left">
+				<div class="sep2">
+				</div>
+				</div>
+                <div class="toc mt-4 mb-4">
+                <!-- Toc if any -->
+                    
+                        
+                            <h4 class="font-weight-bold">Summary</h3>
+                            <ul>
+  <li><a href="#sougou-pinyin">Sougou Pinyin</a></li>
+  <li><a href="#tweaks">tweaks</a></li>
+  <li><a href="#docky">docky</a></li>
+  <li><a href="#screenshot">ScreenShot</a></li>
+  <li><a href="#virtualbox">VirtualBox</a></li>
+  <li><a href="#sublime-text">Sublime Text</a></li>
+  <li><a href="#serial-port-tool-to-add-usb-permission">Serial port tool to add USB permission</a></li>
+  <li><a href="#issues">issues</a></li>
+</ul>
+
+                    
+                    <!-- End Toc -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pt-8 pb-8 text-center">
+        <div class="container">
+		    <div class = "share md-5 text-center">
+		        <p>last-modified : 2021-07-12 18:42:06 +0800</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Begin Comments
+================================================== 
+
+    <div class="container">
+        <div id="comments" class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'demowebsite'; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+            </div>
+        </div>
+    </div>
+ -->
+<!--End Comments
+================================================== -->
+
+<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
+https://search.google.com/structured-data/testing-tool/u/0/
+================================================== -->
+<!--
+ -->
+
+</div>
+    
+</div>
+
+<!-- Categories Jumbotron
+================================================== -->
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+            <div class="d-md-flex align-items-center justify-content-center h-100">
+                <h2 class="d-md-block align-self-center py-1 font-weight-light">More <span class="d-none d-md-inline">→</span></h2>
+            </div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+            
+            
+                
+                    <a class="mt-1 mb-1" href="/en/categories#vim">vim (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#git">git (4)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#ssh">ssh (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#linux">linux (7)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#ruby">ruby (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#nginx">nginx (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#web">web (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#travis">travis (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#ssl">ssl (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#python">python (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#c">c (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#windows">windows (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#kernel">kernel (4)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#dts">dts (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#amlogic">amlogic (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#buildroot">buildroot (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#net">net (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#c++">c++ (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#opencv">opencv (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#debs">debs (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#uboot">uboot (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#ubuntu">ubuntu (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#automake">automake (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#mesa">mesa (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#jekyll">jekyll (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#github">github (1)</a>
+                
+            
+            
+		</div>
+	</div>
+</div>
+
+<!-- Begin Footer
+================================================== -->
+<footer class="footer pt-8 pb-8 text-center">
+    <div class="container">
+        <div class="socials-media">
+            <ul class="list-unstyled">
+              <!--  Replace footer social links here -->
+
+<!-- <li class="d-inline-block ml-1 mr-1"><a target="_blank" href="https://www.facebook.com/yan.wyb.7" class="text-dark"><i class="fab fa-facebook-f"></i></a>
+</li> -->
+
+<li class="d-inline-block ml-1 mr-1"><a target="_blank" href="https://github.com/yan-wyb" class="text-dark"><i class="fab fa-github"></i></a></li>
+
+<li class="d-inline-block ml-1 mr-1"><a target="_blank" href="https://twitter.com/wybyan" class="text-dark"><i class="fab fa-twitter"></i></a></li>
+
+
+            </ul>
+        </div>
+        <!--
+  If you want to remove credits, please, donate:
+  https://www.wowthemes.net/freebies-license/
+-->
+
+<p>
+    
+<span class="credits"> 
+    
+	<a target="_blank" class="text-dark" href="https://github.com/yan-wyb">
+		<u>Copyright © 2021 Avalon</u>
+	</a>
+    
+</span>
+    
+</p>
+<p>
+    
+<span class="credits"> 
+    
+	<a target="_blank" class="text-dark" href="https://beian.miit.gov.cn/">
+		<u>粤ICP备20049535号</u>
+	</a>
+    
+</span>
+    
+</p>
+
+    </div>
+</footer>
+<!-- End Footer
+================================================== -->
+
+</div> <!-- /.site-content -->
+
+<!-- Scripts
+================================================== -->
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="/en/assets/js/mediumish.js"></script>
+
+
+
+<script src="/en/assets/js/ie10-viewport-bug-workaround.js"></script> 
+
+
+<script id="dsq-count-scr" src="//demowebsite.disqus.com/count.js"></script>
+ -->
+</body>
+</html>

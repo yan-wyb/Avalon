@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="icon" href="/en/assets/images/logo.png">
+
+<title>ssl application and configuration | Avalon</title>
+
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>ssl application and configuration | Avalon</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="ssl application and configuration" />
+<meta name="author" content="Yan" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Configure to use the open source ssl certificate Let&#39;s Encrypt of the Linux Foundation" />
+<meta property="og:description" content="Configure to use the open source ssl certificate Let&#39;s Encrypt of the Linux Foundation" />
+<meta property="og:site_name" content="Avalon" />
+<meta property="og:image" content="/en/assets/images/miscellaneous/ssl-logo.jpeg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-13T00:00:00+08:00" />
+<script type="application/ld+json">
+{"headline":"ssl application and configuration","dateModified":"2021-07-12T18:42:06+08:00","datePublished":"2020-06-13T00:00:00+08:00","image":"/en/assets/images/miscellaneous/ssl-logo.jpeg","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/en/assets/images/logo.png"},"name":"Yan"},"mainEntityOfPage":{"@type":"WebPage","@id":"/en/2020/06/13/ssl.html"},"url":"/en/2020/06/13/ssl.html","author":{"@type":"Person","name":"Yan"},"description":"Configure to use the open source ssl certificate Let&#39;s Encrypt of the Linux Foundation","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link href="/en/assets/css/bootstrap2.min.css" rel="stylesheet">
+
+<link href="/en/assets/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="/en/assets/css/screen.css" rel="stylesheet">
+
+<link href="/en/assets/css/main.css" rel="stylesheet">
+
+<link rel="stylesheet" href="/en/assets/css/all.css">
+
+<script src="/en/assets/js/jquery.min.js"></script>
+
+<script src="/en/assets/js/bootstrap.min.js"></script>
+
+</head>
+
+
+<!-- change your GA id in _config.yml -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', '', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+<body class="layout-post">
+	<!-- defer loading of font and font awesome -->
+	<noscript id="deferred-styles">
+		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	</noscript>
+
+
+<!-- Begin Menu Navigation
+================================================== -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+
+    <div class="container pr-0">
+
+    <!-- Begin Logo -->
+    <a class="navbar-brand" href="/en/">
+    <img src="/en/assets/images/logo.png" alt="Avalon">
+    </a>
+    <!-- End Logo -->
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMediumish">
+
+        <!-- Begin Menu -->
+
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                <a class="nav-link" href="/en/linux/index.html">Linux</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/en/embedded/index.html">Embedded</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/en/algorithm/index.html">Algorithm</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/en/prog-lang/index.html">Prog-lang</a>
+
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/en/ai/index.html">AI</a>
+                </li>
+
+				</li>
+                <li class="nav-item">
+                <a class="nav-link" href="/en/miscellaneous/index.html">Miscellaneous</a>
+                </li>
+
+				</li>
+                <li class="nav-item">
+                <a class="nav-link" href="/en/message/index.html">Message</a>
+                </li>
+
+                <li class="nav-item">
+                <a target="_blank" class="nav-link" href="https://github.com/yan-wyb"><i class="fab fa-github"></i>Github</a>
+                </li>
+
+                <script src="/en/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/en/assets/js/lunrsearchengine.js"></script>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/en/about/index.html">About</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">language</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/2020/06/13/ssl.html">中文</a>
+                        <a class="dropdown-item" href="/en/2020/06/13/ssl.html">English</a>
+                    </div>
+                </li>
+
+            </ul>
+
+        <!-- End Menu -->
+
+    </div>
+
+    </div>
+</nav>
+<!-- End Navigation
+================================================== -->
+
+<div class="site-content">
+
+<div class="container">
+
+<!-- Site Title
+================================================== -->
+<div class="mainheading">
+    <h1 class="sitetitle">Avalon</h1>
+    <p class="lead">
+        Garden of Avalon.
+    </p>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="main-content">
+    <!-- Begin Article
+================================================== -->
+<div class="container col-xl-auto">
+    <div class="row">
+
+        <!-- Post Share -->
+        <div class="col-xl-1 pl-0">
+            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=ssl application and configuration&url=/en/2020/06/13/ssl.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://facebook.com/sharer.php?u=/en/2020/06/13/ssl.html" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=/en/2020/06/13/ssl.html" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+
+        </div>
+
+        <!-- Post -->
+        
+
+        <div class="col-md-8 ">
+            <div class="mainheading">
+
+                <!-- Author Box -->
+                
+                <div class="row post-top-meta">
+                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                        
+                        <img class="author-thumb" src="/en/assets/images/Yan.png" alt="Yan">
+                        
+                    </div>
+                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                        <a target="_blank" class="link-dark" href="www.yan-wyb.com">Yan</a><a target="_blank" href="" class="btn follow">Follow</a>
+                        <span class="author-description">Just a simple man.</span>
+                    </div>
+                </div>
+                
+
+                <!-- Post Title -->
+                <h1 class="posttitle">ssl application and configuration</h1>
+
+            </div>
+
+            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+            
+            <!-- End Adsense -->
+
+            <!-- Post Featured Image -->
+            
+
+            
+            <img class="featured-image img-fluid" src="/en/assets/images/miscellaneous/ssl-logo.jpeg" alt="ssl application and configuration">
+            
+
+            
+            <!-- End Featured Image -->
+
+            <!-- Post Content -->
+            <div class="article-post">
+                <p>Configure to use the open source ssl certificate <code class="highlighter-rouge">Let's Encrypt</code> of the Linux Foundation</p>
+
+<ol>
+  <li>Let’s Encrypt certificate is not only free, but also supports wildcard certificate (wildcard certificate refers to a public key certificate that can be used by multiple subdomains), multiple subdomains are very convenient to use.</li>
+  <li>It can be directly obtained through the script of the source code, and the application process is very simple.</li>
+  <li>The certificate is valid for 90 days and can be updated directly through the script</li>
+</ol>
+
+<h1 id="server-settings">Server settings</h1>
+
+<p>Take Alibaba Cloud as an example, other servers are configured in the same way</p>
+
+<h2 id="433-port-settings">433 port settings</h2>
+
+<p>Log in to the server console and confirm that the 433 port is open in the security group of the instance, and there is no need to add a rule</p>
+
+<p><img src="/en/assets/images/miscellaneous/ssl-443setting.png" alt="433-setting" /></p>
+
+<h2 id="domain-name-resolution-settings">Domain name resolution settings</h2>
+
+<p>A resolution record is required for the domain name, so that the application tool can access it through the domain name to confirm the domain name</p>
+
+<p><img src="/en/assets/images/miscellaneous/ssl-domain-name.png" alt="domain name" /></p>
+
+<ol>
+  <li>Select the record type, generally select <code class="highlighter-rouge">A</code>, point to <code class="highlighter-rouge">ipv4</code> address, if you are using <code class="highlighter-rouge">ipv6 address</code>, select <code class="highlighter-rouge">AAAA</code>, domain name redirection, select <code class="highlighter-rouge">CNAME</code>.</li>
+  <li>Host record, choose <code class="highlighter-rouge">www</code> or <code class="highlighter-rouge">@</code> or whatever. Here you need to remember your host record, which will be used later.</li>
+  <li>Your domain name</li>
+  <li>Record value select the IP address you want to resolve</li>
+  <li>Use the default value for TTL.</li>
+</ol>
+
+<h2 id="server-port-processing">Server port processing</h2>
+
+<p>When the script generates the SSL certificate, it needs to use the <code class="highlighter-rouge">80</code> and <code class="highlighter-rouge">433</code> ports, to ensure that the port is not occupied</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">sudo </span>netstat <span class="nt">-ntlp</span>
+Active Internet connections <span class="o">(</span>only servers<span class="o">)</span>
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:80              0.0.0.0:<span class="k">*</span>               LISTEN      623/nginx: master p 
+tcp        0      0 127.0.0.53:53           0.0.0.0:<span class="k">*</span>               LISTEN      467/systemd-resolve 
+tcp        0      0 0.0.0.0:22              0.0.0.0:<span class="k">*</span>               LISTEN      572/sshd            
+tcp        0      0 0.0.0.0:443             0.0.0.0:<span class="k">*</span>               LISTEN      623/nginx: master p 
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Use the kill command to end the process using the <code class="highlighter-rouge">80</code> and <code class="highlighter-rouge">433</code> ports</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">sudo kill</span> <span class="o">[</span>PID]
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>At this point, the preparation of the server is completed</p>
+
+<h1 id="apply-for-a-certificate">Apply for a certificate</h1>
+
+<h2 id="get-script-file">Get script file</h2>
+
+<p>The script is open source on github, clone the repository to the local through <code class="highlighter-rouge">git</code></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">cd</span> <span class="k">${</span><span class="nv">workspace</span><span class="k">}</span>
+<span class="nv">$ </span>git clone https://github.com/certbot/certbot
+<span class="nv">$ </span><span class="nb">cd </span>certbot
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="generate-certificate">Generate certificate</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>./certbot-auto certonly <span class="nt">--webroot</span> <span class="nt">--agree-tos</span> <span class="nt">-v</span> <span class="nt">-t</span> <span class="nt">--email</span> <span class="k">${</span><span class="nv">email</span><span class="k">}</span> <span class="nt">-w</span> <span class="k">${</span><span class="nv">website</span><span class="p"> root</span><span class="k">}</span> <span class="nt">-d</span> <span class="k">${</span><span class="nv">domain</span><span class="p"> name</span><span class="k">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ol>
+  <li><code class="highlighter-rouge">${email}</code> Fill in your email address here, it is recommended to keep the same as the email address of the server application account</li>
+  <li><code class="highlighter-rouge">${website root}</code> Your website source directory</li>
+  <li><code class="highlighter-rouge">${domain name}</code> When resolving the domain name above, the resolution domain name you set, if the host record sets <code class="highlighter-rouge">www</code>, it should be <code class="highlighter-rouge">www.{domain name}</code>, if you set <code class="highlighter-rouge">@</code>, just fill in the domain name directly</li>
+</ol>
+
+<p>If you have no problem with the above settings, then here, the problem should be successfully generated certificate</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>root# <span class="nb">ls</span> /etc/letsencrypt/live/<span class="sb">`</span><span class="k">${</span><span class="nv">domain</span><span class="p"> name</span><span class="k">}</span><span class="sb">`</span>/
+cert.pem       chain.pem      fullchain.pem  privkey.pem    README
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="generate-dhparams">Generate dhparams</h2>
+
+<p>dhparams ensures that both parties can exchange keys securely</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>openssl dhparam <span class="nt">-out</span> /etc/ssl/certs/dhparams.pem 2048
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="configure">Configure</h1>
+
+<p>After preparing the integer, it must be configured into the deployment tool.Here is an example of <code class="highlighter-rouge">nginx</code></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="rouge-code"><pre>server <span class="o">{</span>
+       listen 80<span class="p">;</span>
+       server_name <span class="k">${</span><span class="nv">domain</span><span class="p"> name</span><span class="k">}</span> www.<span class="k">${</span><span class="nv">domain</span><span class="p"> name</span><span class="k">}</span><span class="p">;</span>
+       <span class="k">return </span>301 <span class="k">${</span><span class="nv">domain</span><span class="p"> name</span><span class="k">}</span><span class="nv">$request_uri</span><span class="p">;</span>
+<span class="o">}</span>
+
+server <span class="o">{</span>
+       listen 443 ssl<span class="p">;</span>
+       server_name <span class="k">${</span><span class="nv">domain</span><span class="p"> name</span><span class="k">}</span> www.<span class="k">${</span><span class="nv">domain</span><span class="p"> name</span><span class="k">}</span><span class="p">;</span>
+       ssl on<span class="p">;</span>
+       ssl_certificate /etc/letsencrypt/live/<span class="k">${</span><span class="nv">domain</span><span class="p"> name</span><span class="k">}</span>/fullchain.pem<span class="p">;</span>
+       ssl_certificate_key /etc/letsencrypt/live/<span class="k">${</span><span class="nv">domain</span><span class="p"> name</span><span class="k">}</span>/privkey.pem<span class="p">;</span>
+       ssl_dhparam /etc/ssl/certs/dhparams.pem<span class="p">;</span>
+       ssl_protocols SSLv3 TLSv1 TLSv1.1 TLSv1.2<span class="p">;</span>
+       ssl_ciphers HIGH:!aNULL:!MD5<span class="p">;</span>
+       location / <span class="o">{</span>
+              root <span class="k">${</span><span class="nv">website</span><span class="p"> root</span><span class="k">}</span><span class="p">;</span>
+              index index.html index.htm<span class="p">;</span>
+       <span class="o">}</span>
+<span class="o">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Just restart nginx service</p>
+
+<h1 id="update-certificate">UPdate certificate</h1>
+
+<p>The certificate only valid for 90 days and needs to be updated regularly.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>./certbot-auto renew <span class="nt">-v</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="other">other</h1>
+
+<p>The complete <code class="highlighter-rouge">nginx</code> configuration file: <a href="https://github.com/yan-wyb/source/blob/master/web/nginx/nginx.conf">https://github.com/yan-wyb/source/blob/master/web/nginx/nginx.conf</a></p>
+
+<h1 id="issues">issues</h1>
+
+<p>If there are doubts or errors, please mention issues –&gt; <a href="https://github.com/yan-wyb/issues/issues">Issues</a></p>
+
+
+            </div>
+
+            <!-- Rating -->
+            
+
+            <!-- Post Categories -->
+            <div class="after-post-cats">
+                <ul class="tags mb-4">
+                    
+                    
+                    <li>
+                        <a class="smoothscroll" href="/en/categories#nginx">nginx</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/en/categories#ssl">ssl</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/en/categories#web">web</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Post Tags -->
+            <div class="after-post-tags">
+                <ul class="tags">
+                    
+                    
+                </ul>
+            </div>
+            <!-- End Tags -->
+
+        </div>
+        <!-- End Post -->
+
+        <div class="col-xl-3 pl-0">
+            <div class="share-yan sticky-top sticky-top-offset text-left">
+                <div class="text-left text-md-left">
+				    <a>Back to</a>
+				</div>
+
+				
+				 <div class="text-left text-md-left">
+				    <h3><a class="text-left text-md-left" href="/en/miscellaneous/index.html">miscellaneous</a></h3>
+				</div>
+				
+
+				<div class="text-left text-md-left">
+				<div class="sep2">
+				</div>
+				</div>
+                <div class="toc mt-4 mb-4">
+                <!-- Toc if any -->
+                    
+                        
+                            <h4 class="font-weight-bold">Summary</h3>
+                            <ul>
+  <li><a href="#server-settings">Server settings</a>
+    <ul>
+      <li><a href="#433-port-settings">433 port settings</a></li>
+      <li><a href="#domain-name-resolution-settings">Domain name resolution settings</a></li>
+      <li><a href="#server-port-processing">Server port processing</a></li>
+    </ul>
+  </li>
+  <li><a href="#apply-for-a-certificate">Apply for a certificate</a>
+    <ul>
+      <li><a href="#get-script-file">Get script file</a></li>
+      <li><a href="#generate-certificate">Generate certificate</a></li>
+      <li><a href="#generate-dhparams">Generate dhparams</a></li>
+    </ul>
+  </li>
+  <li><a href="#configure">Configure</a></li>
+  <li><a href="#update-certificate">UPdate certificate</a></li>
+  <li><a href="#other">other</a></li>
+  <li><a href="#issues">issues</a></li>
+</ul>
+
+                    
+                    <!-- End Toc -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pt-8 pb-8 text-center">
+        <div class="container">
+		    <div class = "share md-5 text-center">
+		        <p>last-modified : 2021-07-12 18:42:06 +0800</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Begin Comments
+================================================== 
+
+    <div class="container">
+        <div id="comments" class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'demowebsite'; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+            </div>
+        </div>
+    </div>
+ -->
+<!--End Comments
+================================================== -->
+
+<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
+https://search.google.com/structured-data/testing-tool/u/0/
+================================================== -->
+<!--
+ -->
+
+</div>
+    
+</div>
+
+<!-- Categories Jumbotron
+================================================== -->
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+            <div class="d-md-flex align-items-center justify-content-center h-100">
+                <h2 class="d-md-block align-self-center py-1 font-weight-light">More <span class="d-none d-md-inline">→</span></h2>
+            </div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+            
+            
+                
+                    <a class="mt-1 mb-1" href="/en/categories#vim">vim (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#git">git (4)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#ssh">ssh (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#linux">linux (7)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#ruby">ruby (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#nginx">nginx (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#web">web (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#travis">travis (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#ssl">ssl (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#python">python (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#c">c (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#windows">windows (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#kernel">kernel (4)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#dts">dts (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#amlogic">amlogic (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#buildroot">buildroot (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#net">net (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#c++">c++ (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#opencv">opencv (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#debs">debs (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#uboot">uboot (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#ubuntu">ubuntu (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#automake">automake (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#mesa">mesa (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#jekyll">jekyll (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/en/categories#github">github (1)</a>
+                
+            
+            
+		</div>
+	</div>
+</div>
+
+<!-- Begin Footer
+================================================== -->
+<footer class="footer pt-8 pb-8 text-center">
+    <div class="container">
+        <div class="socials-media">
+            <ul class="list-unstyled">
+              <!--  Replace footer social links here -->
+
+<!-- <li class="d-inline-block ml-1 mr-1"><a target="_blank" href="https://www.facebook.com/yan.wyb.7" class="text-dark"><i class="fab fa-facebook-f"></i></a>
+</li> -->
+
+<li class="d-inline-block ml-1 mr-1"><a target="_blank" href="https://github.com/yan-wyb" class="text-dark"><i class="fab fa-github"></i></a></li>
+
+<li class="d-inline-block ml-1 mr-1"><a target="_blank" href="https://twitter.com/wybyan" class="text-dark"><i class="fab fa-twitter"></i></a></li>
+
+
+            </ul>
+        </div>
+        <!--
+  If you want to remove credits, please, donate:
+  https://www.wowthemes.net/freebies-license/
+-->
+
+<p>
+    
+<span class="credits"> 
+    
+	<a target="_blank" class="text-dark" href="https://github.com/yan-wyb">
+		<u>Copyright © 2021 Avalon</u>
+	</a>
+    
+</span>
+    
+</p>
+<p>
+    
+<span class="credits"> 
+    
+	<a target="_blank" class="text-dark" href="https://beian.miit.gov.cn/">
+		<u>粤ICP备20049535号</u>
+	</a>
+    
+</span>
+    
+</p>
+
+    </div>
+</footer>
+<!-- End Footer
+================================================== -->
+
+</div> <!-- /.site-content -->
+
+<!-- Scripts
+================================================== -->
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="/en/assets/js/mediumish.js"></script>
+
+
+
+<script src="/en/assets/js/ie10-viewport-bug-workaround.js"></script> 
+
+
+<script id="dsq-count-scr" src="//demowebsite.disqus.com/count.js"></script>
+ -->
+</body>
+</html>
