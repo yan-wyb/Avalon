@@ -41,7 +41,7 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         directory: ./_site
-        repository: yan-wyb/yan-wyb.github.io
+        repository: yan-wyb/Avalon
         branch: gh-pages
         github_token: ${{ secrets.ACCESS_TOKEN }}
         force: true
