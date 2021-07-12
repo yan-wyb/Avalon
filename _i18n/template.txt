@@ -16,6 +16,10 @@ permalink: /:year/:month/:day/:title:output_ext
 # Picturs ![]({{ site.baseurl }}/assets/images/)
 # link []({{ site.baseurl }})
 
+{% raw %}
+{% endraw %}
+
+
 # issues
 
 如果有疑惑或错误,请提issues --> [Issues](https://github.com/yan-wyb/issues/issues)
