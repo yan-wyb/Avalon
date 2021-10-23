@@ -19,6 +19,8 @@ permalink: /:year/:month/:day/:title:output_ext
 
 Github Wiki地址： https://github.com/umiddelb/armhf/wiki/Installing,-running,-using-docker-on-armhf-%28ARMv7%29-devices
 
+https://github.com/yan-wyb/source/blob/master/shell/docker/check-config.sh
+
 ```sh
 $ curl -L https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh | /bin/bash /dev/stdin
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
