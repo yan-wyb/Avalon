@@ -142,6 +142,15 @@ $ sudo usermod -a -G dialout $(whoami)
 注销或者重启以后生效
 
 
+# SecureCRT
+
+```sh
+$ wget https://github.com/yan-wyb/somethingelse/raw/master/tools/Ubuntu20.04_SecureCRT.7z
+$ 7z x Ubuntu20.04_SecureCRT.7z
+```
+
+参考readme安装
+
 # issues
 
 如果有疑惑或错误,请提issues --> [Issues](https://github.com/yan-wyb/issues/issues)

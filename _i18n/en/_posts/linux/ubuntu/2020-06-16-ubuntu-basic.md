@@ -139,6 +139,15 @@ $ sudo usermod -a -G dialout $(whoami)
 
 Effective after logout or restart
 
+# SecureCRT
+
+```sh
+$ wget https://github.com/yan-wyb/somethingelse/raw/master/tools/Ubuntu20.04_SecureCRT.7z
+$ 7z x Ubuntu20.04_SecureCRT.7z
+```
+
+follow readme to intall 
+
 # issues
 
 If there are doubts or errors, please mention issues --> [Issues](https://github.com/yan-wyb/issues/issues)
