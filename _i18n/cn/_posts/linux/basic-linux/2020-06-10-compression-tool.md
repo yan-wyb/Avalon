@@ -7,7 +7,7 @@ title: 压缩解压工具
 tags:
 categories: linux
 top-first: false
-top-twice: flase
+top-twice: true
 first-level-classification: linux
 twice-level-classification: basic-linux
 permalink: /:year/:month/:day/:title:output_ext

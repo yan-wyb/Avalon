@@ -46,7 +46,7 @@ jekyll-archives:
   permalinks:
       #    category: '/category/:name/'
    
-languages: ["cn", "en"]
+languages: ["cn"]
 default_lang : "cn"
 
 # Pagination 
