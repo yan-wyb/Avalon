@@ -1,0 +1,1083 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Avalon</title>
+    <description>Garden of Avalon.</description>
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Fri, 18 Mar 2022 19:22:13 +0800</pubDate>
+    <lastBuildDate>Fri, 18 Mar 2022 19:22:13 +0800</lastBuildDate>
+    <generator>Jekyll v3.8.7</generator>
+    
+      <item>
+        <title>搭建V2Ray服务</title>
+        <description>&lt;h1 id=&quot;linux&quot;&gt;Linux&lt;/h1&gt;
+
+&lt;h2 id=&quot;获取应用&quot;&gt;获取应用&lt;/h2&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; ~/v2ray &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/v2ray
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone https://github.com/yan-wyb/v2rayApplication.git
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;v2rayApplication
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;unzip v2ray-linux-64.zip
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;配置客户端&quot;&gt;配置客户端&lt;/h2&gt;
+
+&lt;h3 id=&quot;step1-配置v2ray&quot;&gt;Step1: 配置V2Ray&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;打开客户端,选择&lt;code class=&quot;highlighter-rouge&quot;&gt;Preferences&lt;/code&gt;
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./Qv2ray-v2.7.0-linux-x64.AppImage
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;/assets/images/miscellaneous/ubuntuv2ray1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;选择&lt;code class=&quot;highlighter-rouge&quot;&gt;Kernel Settings&lt;/code&gt;,V2Ray核心文件件配置为上一步获取的仓库中的V2Ray核心文件夹
+&lt;img src=&quot;/assets/images/miscellaneous/ubuntuv2ray2.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;step2-添加v2ray节点&quot;&gt;Step2: 添加V2Ray节点&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;选择&lt;code class=&quot;highlighter-rouge&quot;&gt;import&lt;/code&gt;添加节点
+&lt;img src=&quot;/assets/images/miscellaneous/ubuntuv2ray3.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;将VMESS链接添加到&lt;code class=&quot;highlighter-rouge&quot;&gt;Share Link&lt;/code&gt;,点击&lt;code class=&quot;highlighter-rouge&quot;&gt;Import&lt;/code&gt;完成添加
+&lt;img src=&quot;/assets/images/miscellaneous/ubuntuv2ray4.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;点击已添加的节点或者有右击节点连接&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;: 手动添加节点信息，不使用VMESS链接的，请点击&lt;code class=&quot;highlighter-rouge&quot;&gt;NEW&lt;/code&gt;添加。
+自此，V2Ray插件已经可以正常运行起来了。&lt;/p&gt;
+
+&lt;h2 id=&quot;额外协议支持&quot;&gt;额外协议支持&lt;/h2&gt;
+
+&lt;p&gt;点击查看本地插件文件夹，将仓库内的插件添加到对应的文件，重启软件&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/miscellaneous/ubuntuv2ray5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;windows&quot;&gt;Windows&lt;/h1&gt;
+
+&lt;h2 id=&quot;安装客户端&quot;&gt;安装客户端&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;点击下载&lt;a href=&quot;https://github.com/yan-wyb/v2rayApplication/raw/master/windows/Qv2ray-v2.7.0-Windows-Installer.exe&quot;&gt;Qv2ray-v2.7.0-Windows-Installer.exe&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;双击安装，全部选择默认选项&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;配置v2ray&quot;&gt;配置V2Ray&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;桌面新建文件夹&lt;code class=&quot;highlighter-rouge&quot;&gt;v2ray&lt;/code&gt;, 将&lt;a href=&quot;https://github.com/yan-wyb/v2rayApplication/raw/master/windows/v2ray-windows-64.zip&quot;&gt;v2ray-windows-64.zip&lt;/a&gt;解压到桌面的文件夹内。
+&lt;img src=&quot;/assets/images/miscellaneous/windowsv2ray1.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;配置V2Ray核心文件路径，&lt;code class=&quot;highlighter-rouge&quot;&gt;首选项&lt;/code&gt; –&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;内核配置&lt;/code&gt;:
+&lt;img src=&quot;/assets/images/miscellaneous/windowsv2ray2.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;导入节点。点击导入，将VMESS链接粘贴在分享链接出。
+&lt;img src=&quot;/assets/images/miscellaneous/windowsv2ray3.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;双击默认分组，就能看到刚才配置的节点，连接就能使用。
+&lt;img src=&quot;/assets/images/miscellaneous/windowsv2ray4.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Fri, 18 Mar 2022 00:00:00 +0800</pubDate>
+        <link>/2022/03/18/v2ray-application.html</link>
+        <guid isPermaLink="true">/2022/03/18/v2ray-application.html</guid>
+        
+        
+        <category>ubuntu</category>
+        
+        <category>windows</category>
+        
+        <category>v2ray</category>
+        
+      </item>
+    
+      <item>
+        <title>Amlogic Yocto使用记录</title>
+        <description>&lt;p&gt;记录VIM4开发Yocto过程中碰见的问题。&lt;/p&gt;
+
+&lt;h2 id=&quot;1-查看单包支持的所有命令&quot;&gt;1. 查看单包支持的所有命令&lt;/h2&gt;
+
+&lt;p&gt;以uboot为例&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;yan@yan-wyb:~/yan/git/khadas/amlogic/Yocto-SDK/build&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bitbake u-boot &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; listtasks
+do_build                     Default task &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;a recipe - depends on all other normal tasks required to &lt;span class=&quot;s1&quot;&gt;'build'&lt;/span&gt; a recipe
+do_buildclean                Call &lt;span class=&quot;s1&quot;&gt;'make clean'&lt;/span&gt; or equivalent &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; /home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/u-boot/v2019.01+git999-r1/u-boot-v2019.01+git999/
+do_checkuri                  Validates the SRC_URI value
+do_clean                     Removes all output files &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;a target
+do_cleanall                  Removes all output files, shared state cache, and downloaded &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;files &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;a target
+do_cleansstate               Removes all output files and shared state cache &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;a target
+do_compile                   Compiles the &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;the compilation directory
+do_configure                 Configures the &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;by enabling and disabling any build-time and configuration options &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;the software being built
+do_deploy                    Writes deployable output files to the deploy directory
+do_deploy_source_date_epoch
+do_devpyshell                Starts an interactive Python shell &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;development/debugging
+do_devshell                  Starts a shell with the environment &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;up &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;development/debugging
+do_fetch                     Fetches the &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code
+do_install                   Copies files from the compilation directory to a holding area
+do_listtasks                 Lists all defined tasks &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;a target
+do_package                   Analyzes the content of the holding area and splits it into subsets based on available packages and files
+do_package_qa                Runs QA checks on packaged files
+do_package_write_ipk         Creates the actual IPK packages and places them &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;the Package Feed area
+do_packagedata               Creates package metadata used by the build system to generate the final packages
+do_patch                     Locates patch files and applies them to the &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code
+do_populate_lic              Writes license information &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;the recipe that is collected later when the image is constructed
+do_populate_sysroot          Copies a subset of files installed by do_install into the sysroot &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;order to make them available to other recipes
+do_prepare_recipe_sysroot
+do_unpack                    Unpacks the &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code into a working directory
+NOTE: Tasks Summary: Attempted 1 tasks of which 0 didn&lt;span class=&quot;s1&quot;&gt;'t need to be rerun and all succeeded.
+NOTE: Writing buildhistory
+NOTE: Writing buildhistory took: 2 seconds
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;每个layer支持的命令有所差异&lt;/p&gt;
+
+&lt;h2 id=&quot;2-python版本不对&quot;&gt;2. Python版本不对&lt;/h2&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;OpenEmbedded requires &lt;span class=&quot;s1&quot;&gt;'python'&lt;/span&gt; to be python v2 &lt;span class=&quot;o&quot;&gt;(&amp;gt;=&lt;/span&gt; 2.7.3&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, not python v3.
+Please &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;up python v2 as your default &lt;span class=&quot;s1&quot;&gt;'python'&lt;/span&gt; interpreter.
+bash: conf/local.conf: No such file or directory
+&lt;span class=&quot;o&quot;&gt;===========================================&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;MACHINE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;mesont7-an400
+&lt;span class=&quot;nv&quot;&gt;OUTPUT_DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;build
+&lt;span class=&quot;nv&quot;&gt;AML_PATCH_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/aml-patches-invalid
+
+&lt;span class=&quot;o&quot;&gt;===========================================&lt;/span&gt;
+Common targets are:
+amlogic-image-bootstrap
+amlogic-yocto
+packagegroup-amlogic-baserootfs
+packagegroup-amlogic-fullrootfs
+recovery-image
+vbmeta-image
+vendor-image
+&lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt;: ./../.repo/manifest.xml: No such file or directory
+ Manifest Name &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+
+ Missing file /home/yan/yan/git/khadas/amlogic/Yocto-SDK/.repo/manifests/.conf &lt;span class=&quot;o&quot;&gt;!!!&lt;/span&gt;  Please check.
+
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Yocto只支持Python2,需要确保使用了Python2的环境，如果使用了conda等虚拟环境请先退出。&lt;/p&gt;
+
+&lt;h2 id=&quot;3-内核修改后未clean报错&quot;&gt;3. 内核修改后未clean报错&lt;/h2&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;ERROR: linux-meson-5.4.125+git999-r2 do_compile: oe_runmake failed
+ERROR: linux-meson-5.4.125+git999-r2 do_compile: Execution of &lt;span class=&quot;s1&quot;&gt;'/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/temp/run.do_compile.32363'&lt;/span&gt; failed with &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;code 1
+ERROR: Logfile of failure stored &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;: /home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/temp/log.do_compile.32363
+Log data follows:
+| DEBUG: Executing python &lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;externalsrc_compile_prefunc
+| NOTE: linux-meson: compiling from external &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;tree /home/yan/yan/git/khadas/amlogic/Yocto-SDK/aml-comp/kernel/aml-5.4
+| DEBUG: Python &lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;externalsrc_compile_prefunc finished
+| DEBUG: Executing shell &lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;do_compile
+| inside kernel_meson
+| NOTE: make &lt;span class=&quot;nt&quot;&gt;-j&lt;/span&gt; 16 &lt;span class=&quot;nv&quot;&gt;HOSTCC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;gcc  &lt;span class=&quot;nt&quot;&gt;-isystem&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot-native/usr/include &lt;span class=&quot;nt&quot;&gt;-O2&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-pipe&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot-native/usr/lib                         &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot-native/lib                         &lt;span class=&quot;nt&quot;&gt;-Wl&lt;/span&gt;,--enable-new-dtags                         &lt;span class=&quot;nt&quot;&gt;-Wl&lt;/span&gt;,-rpath-link,/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot-native/usr/lib                         &lt;span class=&quot;nt&quot;&gt;-Wl&lt;/span&gt;,-rpath-link,/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot-native/lib                         &lt;span class=&quot;nt&quot;&gt;-Wl&lt;/span&gt;,-rpath,/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot-native/usr/lib                         &lt;span class=&quot;nt&quot;&gt;-Wl&lt;/span&gt;,-rpath,/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot-native/lib                         &lt;span class=&quot;nt&quot;&gt;-Wl&lt;/span&gt;,-O1 &lt;span class=&quot;nt&quot;&gt;-Wl&lt;/span&gt;,--allow-shlib-undefined &lt;span class=&quot;nt&quot;&gt;-Wl&lt;/span&gt;,--dynamic-linker&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/sysroots-uninative/x86_64-linux/lib/ld-linux-x86-64.so.2 &lt;span class=&quot;nv&quot;&gt;HOSTCPP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;gcc  &lt;span class=&quot;nt&quot;&gt;-E&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;HOSTCXX&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;g++  &lt;span class=&quot;nt&quot;&gt;-isystem&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot-native/usr/include &lt;span class=&quot;nt&quot;&gt;-O2&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-pipe&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot-native/usr/lib                         &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot-native/lib                         &lt;span class=&quot;nt&quot;&gt;-Wl&lt;/span&gt;,--enable-new-dtags                         &lt;span class=&quot;nt&quot;&gt;-Wl&lt;/span&gt;,-rpath-link,/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot-native/usr/lib                         &lt;span class=&quot;nt&quot;&gt;-Wl&lt;/span&gt;,-rpath-link,/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot-native/lib                         &lt;span class=&quot;nt&quot;&gt;-Wl&lt;/span&gt;,-rpath,/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot-native/usr/lib                         &lt;span class=&quot;nt&quot;&gt;-Wl&lt;/span&gt;,-rpath,/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot-native/lib                         &lt;span class=&quot;nt&quot;&gt;-Wl&lt;/span&gt;,-O1 &lt;span class=&quot;nt&quot;&gt;-Wl&lt;/span&gt;,--allow-shlib-undefined &lt;span class=&quot;nt&quot;&gt;-Wl&lt;/span&gt;,--dynamic-linker&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/sysroots-uninative/x86_64-linux/lib/ld-linux-x86-64.so.2 Image.gz &lt;span class=&quot;nv&quot;&gt;CC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;aarch64-poky-linux-gcc   &lt;span class=&quot;nt&quot;&gt;-fuse-ld&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;bfd &lt;span class=&quot;nt&quot;&gt;-fdebug-prefix-map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/src/debug/linux-meson/5.4.125+git999-r2                     &lt;span class=&quot;nt&quot;&gt;-fdebug-prefix-map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;                     &lt;span class=&quot;nt&quot;&gt;-fdebug-prefix-map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot-native&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;                      &lt;span class=&quot;nt&quot;&gt;-fdebug-prefix-map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work-shared/mesont7-an400/kernel-source&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/src/kernel  &lt;span class=&quot;nt&quot;&gt;--sysroot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot  &lt;span class=&quot;nt&quot;&gt;--sysroot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot &lt;span class=&quot;nv&quot;&gt;LD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;aarch64-poky-linux-ld.bfd    &lt;span class=&quot;nt&quot;&gt;--sysroot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot  &lt;span class=&quot;nt&quot;&gt;--sysroot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/recipe-sysroot
+| &lt;span class=&quot;k&quot;&gt;***&lt;/span&gt;
+| &lt;span class=&quot;k&quot;&gt;***&lt;/span&gt; The &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;tree is not clean, please run &lt;span class=&quot;s1&quot;&gt;'make mrproper'&lt;/span&gt;
+| &lt;span class=&quot;k&quot;&gt;***&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; /home/yan/yan/git/khadas/amlogic/Yocto-SDK/aml-comp/kernel/aml-5.4
+| &lt;span class=&quot;k&quot;&gt;***&lt;/span&gt;
+| make[2]: &lt;span class=&quot;k&quot;&gt;***&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/aml-comp/kernel/aml-5.4/Makefile:562: outputmakefile] Error 1
+| make[1]: &lt;span class=&quot;k&quot;&gt;***&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/aml-comp/kernel/aml-5.4/Makefile:736: include/config/auto.conf.cmd] Error 2
+| make[1]: &lt;span class=&quot;k&quot;&gt;***&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;include/config/auto.conf.cmd] Deleting file &lt;span class=&quot;s1&quot;&gt;'include/config/tristate.conf'&lt;/span&gt;
+| make: &lt;span class=&quot;k&quot;&gt;***&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/aml-comp/kernel/aml-5.4/Makefile:179: sub-make] Error 2
+| ERROR: oe_runmake failed
+| WARNING: &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;code 1 from a shell command.
+| ERROR: Execution of &lt;span class=&quot;s1&quot;&gt;'/home/yan/yan/git/khadas/amlogic/Yocto-SDK/build/tmp/work/mesont7_an400-poky-linux/linux-meson/5.4.125+git999-r2/temp/run.do_compile.32363'&lt;/span&gt; failed with &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;code 1
+ERROR: Task &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;/home/yan/yan/git/khadas/amlogic/Yocto-SDK/meta-meson/recipes-kernel/linux/linux-meson_5.4.bb:do_compile&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; failed with &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;code &lt;span class=&quot;s1&quot;&gt;'1'&lt;/span&gt;
+NOTE: Tasks Summary: Attempted 608 tasks of which 607 didn&lt;span class=&quot;s1&quot;&gt;'t need to be rerun and 1 failed.
+NOTE: Writing buildhistory
+NOTE: Writing buildhistory took: 1 seconds
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;其中明显提示了&lt;code class=&quot;highlighter-rouge&quot;&gt;The source tree is not clean, please run 'make mrproper'&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;清理内核&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;make distclean
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;再次编译通过&lt;/p&gt;
+
+&lt;h2 id=&quot;4-uboot-make-saveconfig以后未找到defconfig&quot;&gt;4. Uboot &lt;code class=&quot;highlighter-rouge&quot;&gt;make saveconfig&lt;/code&gt;以后未找到defconfig&lt;/h2&gt;
+
+&lt;p&gt;Amlogic U-Boot代码的编译都会在build目录下进行，因此&lt;code class=&quot;highlighter-rouge&quot;&gt;make savedefconfig&lt;/code&gt;以后，在&lt;code class=&quot;highlighter-rouge&quot;&gt;build&lt;/code&gt;目录可以找到相应的defcongfig.&lt;/p&gt;
+
+&lt;h2 id=&quot;5-内核以及u-boot配置文件&quot;&gt;5. 内核以及U-Boot配置文件&lt;/h2&gt;
+
+&lt;p&gt;kernel: &lt;code class=&quot;highlighter-rouge&quot;&gt;meta-meson/recipes-kernel/linux/linux-meson_5.4.bb&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;U-Boot: &lt;code class=&quot;highlighter-rouge&quot;&gt;meta-meson/recipes-bsp/u-boot/u-boot_2019.01.bb&lt;/code&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 09 Mar 2022 00:00:00 +0800</pubDate>
+        <link>/2022/03/09/yocto.html</link>
+        <guid isPermaLink="true">/2022/03/09/yocto.html</guid>
+        
+        
+        <category>yocto</category>
+        
+      </item>
+    
+      <item>
+        <title>如何添加google analytics</title>
+        <description>&lt;p&gt;这里记录如何添加google analytics到网站&lt;/p&gt;
+
+&lt;h1 id=&quot;1-申请google-analytics账号&quot;&gt;1. 申请google analytics账号&lt;/h1&gt;
+
+&lt;p&gt;登录&lt;code class=&quot;highlighter-rouge&quot;&gt;google analytics&lt;/code&gt;网站，并注册账号&lt;/p&gt;
+
+&lt;h1 id=&quot;2-生成数据流接口&quot;&gt;2. 生成数据流接口&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;点击设置，找到&lt;code class=&quot;highlighter-rouge&quot;&gt;Account Settings&lt;/code&gt;, 选择&lt;code class=&quot;highlighter-rouge&quot;&gt;Data Streams&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/miscellaneous/analytis4.png&quot; alt=&quot;Account Setting&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;选择&lt;code class=&quot;highlighter-rouge&quot;&gt;Add Stream&lt;/code&gt;,&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/miscellaneous/analytis3.png&quot; alt=&quot;Stream&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;输入网站的地址和名称&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/miscellaneous/analytis2.png&quot; alt=&quot;Generate&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;3-添加到网站&quot;&gt;3. 添加到网站&lt;/h1&gt;
+
+&lt;p&gt;在生成的Stream下面，有一个添加到网站的代码&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/miscellaneous/analytis1.png&quot; alt=&quot;code&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;将其添加到网站的&lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt;中即可。以jekyll为例，&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;在&lt;code class=&quot;highlighter-rouge&quot;&gt;_includes&lt;/code&gt;目录下新增&lt;code class=&quot;highlighter-rouge&quot;&gt;google-analytics.html&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Global site tag (gtag.js) - Google Analytics --&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://www.googletagmanager.com/gtag/js?id=G-D6LYD0GPXC&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dataLayer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dataLayer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[];&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gtag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dataLayer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);}&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;gtag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;js&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;gtag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;G-D6LYD0GPXC&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;include到&lt;code class=&quot;highlighter-rouge&quot;&gt;_include/head.html&lt;/code&gt;中&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;
+{% include google-analytics.html %}
+
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Sat, 08 Jan 2022 00:00:00 +0800</pubDate>
+        <link>/2022/01/08/google-analytics.html</link>
+        <guid isPermaLink="true">/2022/01/08/google-analytics.html</guid>
+        
+        
+        <category>web</category>
+        
+      </item>
+    
+      <item>
+        <title>kms</title>
+        <description>&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;kms.03k.org
+kms.chinancce.com
+kms.lotro.cc
+cy2617.jios.org
+kms.shuax.com
+kms.luody.info
+kms.cangshui.net
+zh.us.to
+kms.library.hk
+xykz.f3322.org
+kms.binye.xyz
+kms.tttal.com
+kms.v0v.bid
+kms.moeclub.org
+amrice.top
+kms.digiboy.ir
+kms.lolico.moe
+kms8.MSGuides.com
+kms9.MSGuides.com
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Thu, 06 Jan 2022 00:00:00 +0800</pubDate>
+        <link>/2022/01/06/kms.html</link>
+        <guid isPermaLink="true">/2022/01/06/kms.html</guid>
+        
+        
+        <category>kms</category>
+        
+      </item>
+    
+      <item>
+        <title>Linux下格式化存储器</title>
+        <description>&lt;p&gt;这篇记录如何在Linux下格式化如SSD，u盘硬盘之类的存储器&lt;/p&gt;
+
+&lt;h1 id=&quot;确认节点&quot;&gt;确认节点&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;u盘以及硬盘的节点一般为&lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/sdx&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;SSD在linux下的节点一般为&lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/nvmex&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;SD卡在linux下的节点一般为&lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/mmcblkx&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;设置分区&quot;&gt;设置分区&lt;/h1&gt;
+
+&lt;p&gt;这里以u盘为例。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;使用&lt;code class=&quot;highlighter-rouge&quot;&gt;fdisk&lt;/code&gt;命令打开设备节点&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;fdisk /dev/sdx
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;输入 &lt;code class=&quot;highlighter-rouge&quot;&gt;d&lt;/code&gt;，删除原有分区，知道显示没有分区为止。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;输入&lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt;,设置主分区，随后输入&lt;code class=&quot;highlighter-rouge&quot;&gt;g&lt;/code&gt;设置，设置为GPT格式。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;输入&lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt;,设置分区，默认即可，如果你需要格式成多个分区，可以设置分区大小，并再次重复输入&lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt;。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;输入&lt;code class=&quot;highlighter-rouge&quot;&gt;w&lt;/code&gt;，保存退出。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;设置分区格式&quot;&gt;设置分区格式&lt;/h1&gt;
+
+&lt;p&gt;这里依然以U盘为例。&lt;/p&gt;
+
+&lt;p&gt;设置完分区以后，数据分区为&lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/sdx1&lt;/code&gt;。(SSD以及SSD卡一般后缀是&lt;code class=&quot;highlighter-rouge&quot;&gt;p1&lt;/code&gt;)。&lt;/p&gt;
+
+&lt;p&gt;使用mkfs命令格式化。&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mkfs.ext4 /dev/sdx1
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这里采用&lt;code class=&quot;highlighter-rouge&quot;&gt;ext4&lt;/code&gt;格式，如果使用其他格式可以修改命令。如&lt;code class=&quot;highlighter-rouge&quot;&gt;ntfs&lt;/code&gt;为&lt;code class=&quot;highlighter-rouge&quot;&gt;mkfs.ntfs&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h1 id=&quot;挂载&quot;&gt;挂载&lt;/h1&gt;
+
+&lt;p&gt;依然以u盘为例。&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mount /dev/sdx1 /path/to/your/directory
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Thu, 06 Jan 2022 00:00:00 +0800</pubDate>
+        <link>/2022/01/06/format-storage.html</link>
+        <guid isPermaLink="true">/2022/01/06/format-storage.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>编译并打包OpenCV</title>
+        <description>&lt;p&gt;这篇记录如何在arm环境下编译opencv并打包成deb包。&lt;/p&gt;
+
+&lt;h1 id=&quot;获取源码&quot;&gt;获取源码&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Clone源码&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;yan@yan-wyb:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone https://github.com/opencv/opencv.git
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;切换到需要的tag&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这里以4.5为例，&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;yan@yan-wyb:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;opencv/
+yan@yan-wyb:~/opencv&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git checckout &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; 4.5.0
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;git tag&lt;/code&gt;命令查看所有可用的tag&lt;/p&gt;
+
+&lt;h1 id=&quot;编译&quot;&gt;编译&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;opencv编译是使用cmake命令。没有的请先安装cmake，以ubuntu为例&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;yan@yan-wyb:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;cmake
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;创建编译目录&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;yan@yan-wyb:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;opencv
+yan@yan-wyb:~/opencv&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;build
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;使用cmake编译&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这里编译使用一些常见选项，并安装到当前目录&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;yan@yan-wyb:~/opencv&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;build/
+yan@yan-wyb:~/opencv/build&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cmake &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;CMAKE_BUILD_TYPE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;RELEASE &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;CMAKE_INSTALL_PREFIX&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;./install &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;BUILD_TESTS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;OFF &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;BUILD_EXAMPLES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;OFF &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;INSTALL_PYTHON_EXAMPLES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;OFF &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;BUILD_opencv_gapi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;OFF &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;BUILD_opencv_python2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;OFF &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;BUILD_opencv_python3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ON &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;PYTHON3_INCLUDE_DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/include/python3.8 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;PYTHON3_EXECUTABLE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/bin/python3.8 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;PYTHON3_LIBRARY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/lib/aarch64-linux-gnu/libpython3.8.so.1.0 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;PYTHON3_NUMPY_INCLUDE_DIRS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/lib/python3.8/dist-packages/numpy/core/include/
+yan@yan-wyb:~/opencv/build&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;make
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;等待编译完成，编译完成以后安装到指定的目录，即当前目录下&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;yan@yan-wyb:~/opencv/build&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;make &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;如要安装到其他目录可在上一步中指定安装位置&lt;code class=&quot;highlighter-rouge&quot;&gt;-D CMAKE_INSTALL_PREFIX=&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;打包&quot;&gt;打包&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;创建打包脚本&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;yan@yan-wyb:~/opencv/build&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd install
+&lt;/span&gt;yan@yan-wyb:~/opencv/build/install&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;DEBIAN
+yan@yan-wyb:~/opencv/build/install&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vim DEBIAN/control
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;内容如下&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;Package: opencv
+Version: 4.5.0
+Section: kernel
+Architecture: arm64
+Maintainer: Yan &amp;lt;yan-wyb@foxmail.com&amp;gt;
+Installed-Size: 1
+Priority: optional
+Description: OpenCV libraries.
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;打包&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;yan@yan-wyb:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;opencv/build/
+yan@yan-wyb:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;dpkg-deb &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; ./opencv-4.5.0.deb
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Thu, 06 Jan 2022 00:00:00 +0800</pubDate>
+        <link>/2022/01/06/build-and-package-opencv.html</link>
+        <guid isPermaLink="true">/2022/01/06/build-and-package-opencv.html</guid>
+        
+        
+        <category>opencv</category>
+        
+        <category>linux</category>
+        
+      </item>
+    
+      <item>
+        <title>Ubuntu增加swap空间</title>
+        <description>&lt;p&gt;记录如何在Ubuntu下手动增加swap空间&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;创建一个swapfile&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;yan@yan-wyb:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo dd &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/zero &lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/swapfile &lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1M &lt;span class=&quot;nv&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4096
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;修改权限&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;yan@yan-wyb:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo chmod &lt;/span&gt;600 /swapfile
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;修改文件类型为swap&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;yan@yan-wyb:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mkswap /swapfile
+Setting up swapspace version 1, size &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 4 GiB &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;4294963200 bytes&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+no label, &lt;span class=&quot;nv&quot;&gt;UUID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;463c559f-b5db-471a-a825-2cd17ee39adb
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;如果你需要开机就自动挂在这个swap，这里的UUID可以记下，再从&lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/fstab&lt;/code&gt;里面配置为开机自动加载&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;启动swapfile&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;yan@yan-wyb:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;swapon /swapfile
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ps: 查看已经加载的swap空间&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;yan@yan-wyb:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /proc/swaps
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Mon, 03 Jan 2022 00:00:00 +0800</pubDate>
+        <link>/2022/01/03/swapfile.html</link>
+        <guid isPermaLink="true">/2022/01/03/swapfile.html</guid>
+        
+        
+        <category>ubuntu</category>
+        
+      </item>
+    
+      <item>
+        <title>内存相关信息</title>
+        <description>&lt;h2 id=&quot;1-python快速释放内存&quot;&gt;1. Python快速释放内存&lt;/h2&gt;
+
+&lt;p&gt;python在del对象后，并不会立刻释放对象占有的内存，当需要快速释放内存时，需要使用python gc包&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;gc&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;gc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Thu, 18 Nov 2021 00:00:00 +0800</pubDate>
+        <link>/2021/11/18/memory.html</link>
+        <guid isPermaLink="true">/2021/11/18/memory.html</guid>
+        
+        
+        <category>python</category>
+        
+      </item>
+    
+      <item>
+        <title>压力测试工具stress</title>
+        <description>&lt;p&gt;stress是linux下常用的压力测试工具，这里介绍如何使用stress对板子性能进行测试&lt;/p&gt;
+
+&lt;h2 id=&quot;安装&quot;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;这里以ubuntu为例&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;stress
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;测试&quot;&gt;测试&lt;/h2&gt;
+
+&lt;p&gt;直接运行&lt;code class=&quot;highlighter-rouge&quot;&gt;stress&lt;/code&gt;,能看到stress的命令参数说明&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;stress
+&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;stress&lt;span class=&quot;s1&quot;&gt;' imposes certain types of compute stress on your system
+
+Usage: stress [OPTION [ARG]] ...
+ -?, --help         show this help statement
+     --version      show version statement
+ -v, --verbose      be verbose
+ -q, --quiet        be quiet
+ -n, --dry-run      show what would have been done
+ -t, --timeout N    timeout after N seconds
+     --backoff N    wait factor of N microseconds before work starts
+ -c, --cpu N        spawn N workers spinning on sqrt()
+ -i, --io N         spawn N workers spinning on sync()
+ -m, --vm N         spawn N workers spinning on malloc()/free()
+     --vm-bytes B   malloc B bytes per vm worker (default is 256MB)
+     --vm-stride B  touch a byte every B bytes (default is 4096)
+     --vm-hang N    sleep N secs before free (default none, 0 is inf)
+     --vm-keep      redirty memory instead of freeing and reallocating
+ -d, --hdd N        spawn N workers spinning on write()/unlink()
+     --hdd-bytes B  write B bytes per hdd worker (default is 1GB)
+
+Example: stress --cpu 8 --io 4 --vm 2 --vm-bytes 128M --timeout 10s
+
+Note: Numbers may be suffixed with s,m,h,d,y (time) or B,K,M,G (size).
+
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;CPU测试&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;stress &lt;span class=&quot;nt&quot;&gt;--cpu&lt;/span&gt; N
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;内存测试&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;stress &lt;span class=&quot;nt&quot;&gt;--vm&lt;/span&gt; N &lt;span class=&quot;nt&quot;&gt;--vm-bytes&lt;/span&gt; 300M
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;--vm-bytes&lt;/code&gt;指定单个进程占的内存&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;磁盘测试&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;stress &lt;span class=&quot;nt&quot;&gt;--io&lt;/span&gt; N &lt;span class=&quot;nt&quot;&gt;--hdd&lt;/span&gt; N &lt;span class=&quot;nt&quot;&gt;--hdd-bytes&lt;/span&gt; 512M
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;--io&lt;/code&gt; 产生N个进程反复调用sync，&lt;code class=&quot;highlighter-rouge&quot;&gt;--hdd&lt;/code&gt;产生N个进程写入固定大小临时文件再删除，&lt;code class=&quot;highlighter-rouge&quot;&gt;--hdd-bytes&lt;/code&gt;指定文件大小&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 18 Nov 2021 00:00:00 +0800</pubDate>
+        <link>/2021/11/18/stress-tool.html</link>
+        <guid isPermaLink="true">/2021/11/18/stress-tool.html</guid>
+        
+        
+        <category>tool</category>
+        
+        <category>linux</category>
+        
+      </item>
+    
+      <item>
+        <title>内核增加docker配置</title>
+        <description>&lt;p&gt;这篇主要记录如何在ARM64上的内核上配置支持Docker&lt;/p&gt;
+
+&lt;p&gt;使用docker验证脚本验证所需配置&lt;/p&gt;
+
+&lt;p&gt;Github Wiki地址： https://github.com/umiddelb/armhf/wiki/Installing,-running,-using-docker-on-armhf-%28ARMv7%29-devices&lt;/p&gt;
+
+&lt;p&gt;https://github.com/yan-wyb/source/blob/master/shell/docker/check-config.sh&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh | /bin/bash /dev/stdin
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 11991  100 11991    0     0  13382      0 &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt;:--:-- &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt;:--:-- &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt;:--:-- 13382
+info: reading kernel config from /proc/config.gz ...
+
+Generally Necessary:
+- cgroup hierarchy: properly mounted &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;/sys/fs/cgroup]
+- CONFIG_NAMESPACES: enabled
+- CONFIG_NET_NS: enabled
+- CONFIG_PID_NS: enabled
+- CONFIG_IPC_NS: enabled
+- CONFIG_UTS_NS: enabled
+- CONFIG_CGROUPS: enabled
+- CONFIG_CGROUP_CPUACCT: enabled
+- CONFIG_CGROUP_DEVICE: enabled
+- CONFIG_CGROUP_FREEZER: enabled
+- CONFIG_CGROUP_SCHED: enabled
+- CONFIG_CPUSETS: enabled
+- CONFIG_MEMCG: enabled
+- CONFIG_KEYS: enabled
+- CONFIG_VETH: enabled
+- CONFIG_BRIDGE: enabled
+- CONFIG_BRIDGE_NETFILTER: enabled
+- CONFIG_IP_NF_FILTER: enabled
+- CONFIG_IP_NF_TARGET_MASQUERADE: enabled
+- CONFIG_NETFILTER_XT_MATCH_ADDRTYPE: enabled
+- CONFIG_NETFILTER_XT_MATCH_CONNTRACK: enabled
+- CONFIG_NETFILTER_XT_MATCH_IPVS: enabled
+- CONFIG_NETFILTER_XT_MARK: enabled
+- CONFIG_IP_NF_NAT: enabled
+- CONFIG_NF_NAT: enabled
+- CONFIG_POSIX_MQUEUE: enabled
+- CONFIG_CGROUP_BPF: enabled
+
+Optional Features:
+- CONFIG_USER_NS: enabled
+- CONFIG_SECCOMP: enabled
+- CONFIG_SECCOMP_FILTER: enabled
+- CONFIG_CGROUP_PIDS: enabled
+- CONFIG_MEMCG_SWAP: enabled
+- CONFIG_MEMCG_SWAP_ENABLED: enabled
+    &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;cgroup swap accounting is currently enabled&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+- CONFIG_BLK_CGROUP: enabled
+- CONFIG_BLK_DEV_THROTTLING: enabled
+- CONFIG_CGROUP_PERF: enabled
+- CONFIG_CGROUP_HUGETLB: missing
+- CONFIG_NET_CLS_CGROUP: enabled
+- CONFIG_CGROUP_NET_PRIO: enabled
+- CONFIG_CFS_BANDWIDTH: enabled
+- CONFIG_FAIR_GROUP_SCHED: enabled
+- CONFIG_RT_GROUP_SCHED: enabled
+- CONFIG_IP_NF_TARGET_REDIRECT: enabled
+- CONFIG_IP_VS: enabled
+- CONFIG_IP_VS_NFCT: enabled
+- CONFIG_IP_VS_PROTO_TCP: enabled
+- CONFIG_IP_VS_PROTO_UDP: enabled
+- CONFIG_IP_VS_RR: enabled
+- CONFIG_SECURITY_SELINUX: enabled
+- CONFIG_SECURITY_APPARMOR: enabled
+- CONFIG_EXT4_FS: enabled
+- CONFIG_EXT4_FS_POSIX_ACL: enabled
+- CONFIG_EXT4_FS_SECURITY: enabled
+- Network Drivers:
+  - &lt;span class=&quot;s2&quot;&gt;&quot;overlay&quot;&lt;/span&gt;:
+    - CONFIG_VXLAN: enabled
+    - CONFIG_BRIDGE_VLAN_FILTERING: enabled
+      Optional &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;encrypted networks&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+      - CONFIG_CRYPTO: enabled
+      - CONFIG_CRYPTO_AEAD: enabled
+      - CONFIG_CRYPTO_GCM: enabled
+      - CONFIG_CRYPTO_SEQIV: enabled
+      - CONFIG_CRYPTO_GHASH: enabled
+      - CONFIG_XFRM: enabled
+      - CONFIG_XFRM_USER: enabled
+      - CONFIG_XFRM_ALGO: enabled
+      - CONFIG_INET_ESP: enabled
+  - &lt;span class=&quot;s2&quot;&gt;&quot;ipvlan&quot;&lt;/span&gt;:
+    - CONFIG_IPVLAN: enabled
+  - &lt;span class=&quot;s2&quot;&gt;&quot;macvlan&quot;&lt;/span&gt;:
+    - CONFIG_MACVLAN: enabled
+    - CONFIG_DUMMY: enabled
+  - &lt;span class=&quot;s2&quot;&gt;&quot;ftp,tftp client in container&quot;&lt;/span&gt;:
+    - CONFIG_NF_NAT_FTP: enabled
+    - CONFIG_NF_CONNTRACK_FTP: enabled
+    - CONFIG_NF_NAT_TFTP: enabled
+    - CONFIG_NF_CONNTRACK_TFTP: enabled
+- Storage Drivers:
+  - &lt;span class=&quot;s2&quot;&gt;&quot;aufs&quot;&lt;/span&gt;:
+    - CONFIG_AUFS_FS: missing
+  - &lt;span class=&quot;s2&quot;&gt;&quot;btrfs&quot;&lt;/span&gt;:
+    - CONFIG_BTRFS_FS: enabled &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;as module&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    - CONFIG_BTRFS_FS_POSIX_ACL: enabled
+  - &lt;span class=&quot;s2&quot;&gt;&quot;devicemapper&quot;&lt;/span&gt;:
+    - CONFIG_BLK_DEV_DM: enabled
+    - CONFIG_DM_THIN_PROVISIONING: enabled
+  - &lt;span class=&quot;s2&quot;&gt;&quot;overlay&quot;&lt;/span&gt;:
+    - CONFIG_OVERLAY_FS: enabled &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;as module&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  - &lt;span class=&quot;s2&quot;&gt;&quot;zfs&quot;&lt;/span&gt;:
+    - /dev/zfs: missing
+    - zfs &lt;span class=&quot;nb&quot;&gt;command&lt;/span&gt;: missing
+    - zpool &lt;span class=&quot;nb&quot;&gt;command&lt;/span&gt;: missing
+
+Limits:
+- /proc/sys/kernel/keys/root_maxkeys: 1000000
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;缺了哪些配置就在内核里面打开。&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 23 Oct 2021 00:00:00 +0800</pubDate>
+        <link>/2021/10/23/docker-configuration.html</link>
+        <guid isPermaLink="true">/2021/10/23/docker-configuration.html</guid>
+        
+        
+        <category>kernel</category>
+        
+        <category>docker</category>
+        
+      </item>
+    
+  </channel>
+</rss>

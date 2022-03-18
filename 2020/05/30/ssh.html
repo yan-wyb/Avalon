@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="icon" href="/assets/images/logo.png">
+
+<title>ssh | Avalon</title>
+
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>ssh | Avalon</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="ssh" />
+<meta name="author" content="Yan" />
+<meta property="og:locale" content="cn" />
+<meta name="description" content="ssh是linux远程操作和管理服务的重要工具" />
+<meta property="og:description" content="ssh是linux远程操作和管理服务的重要工具" />
+<meta property="og:site_name" content="Avalon" />
+<meta property="og:image" content="/assets/images/miscellaneous/ssh.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-05-30T00:00:00+08:00" />
+<script type="application/ld+json">
+{"headline":"ssh","dateModified":"2022-03-18T19:21:39+08:00","datePublished":"2020-05-30T00:00:00+08:00","image":"/assets/images/miscellaneous/ssh.jpg","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"},"name":"Yan"},"mainEntityOfPage":{"@type":"WebPage","@id":"/2020/05/30/ssh.html"},"url":"/2020/05/30/ssh.html","author":{"@type":"Person","name":"Yan"},"description":"ssh是linux远程操作和管理服务的重要工具","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link href="/assets/css/bootstrap2.min.css" rel="stylesheet">
+
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="/assets/css/screen.css" rel="stylesheet">
+
+<link href="/assets/css/main.css" rel="stylesheet">
+
+<link rel="stylesheet" href="/assets/css/all.css">
+
+<script src="/assets/js/jquery.min.js"></script>
+
+<script src="/assets/js/bootstrap.min.js"></script>
+
+</head>
+
+
+<!-- change your GA id in _config.yml -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', '', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+<body class="layout-post">
+	<!-- defer loading of font and font awesome -->
+	<noscript id="deferred-styles">
+		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	</noscript>
+
+
+<!-- Begin Menu Navigation
+================================================== -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+
+    <div class="container pr-0">
+
+    <!-- Begin Logo -->
+    <a class="navbar-brand" href="/">
+    <img src="/assets/images/logo.png" alt="Avalon">
+    </a>
+    <!-- End Logo -->
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMediumish">
+
+        <!-- Begin Menu -->
+
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                <a class="nav-link" href="/linux/index.html">Linux</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/embedded/index.html">Embedded</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/algorithm/index.html">Algorithm</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/prog-lang/index.html">Prog-lang</a>
+
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/ai/index.html">AI</a>
+                </li>
+
+				</li>
+                <li class="nav-item">
+                <a class="nav-link" href="/miscellaneous/index.html">Miscellaneous</a>
+                </li>
+
+				</li>
+                <li class="nav-item">
+                <a class="nav-link" href="/message/index.html">Message</a>
+                </li>
+
+                <li class="nav-item">
+                <a target="_blank" class="nav-link" href="https://github.com/yan-wyb"><i class="fab fa-github"></i>Github</a>
+                </li>
+
+                <script src="/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/assets/js/lunrsearchengine.js"></script>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/about/index.html">About</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">language</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/2020/05/30/ssh.html">中文</a>
+<!--                        <a class="dropdown-item" href="/en/2020/05/30/ssh.html">English</a>  -->
+                    </div>
+                </li>
+
+            </ul>
+
+        <!-- End Menu -->
+
+    </div>
+
+    </div>
+</nav>
+<!-- End Navigation
+================================================== -->
+
+<div class="site-content">
+
+<div class="container">
+
+<!-- Site Title
+================================================== -->
+<div class="mainheading">
+    <h1 class="sitetitle">Avalon</h1>
+    <p class="lead">
+        Garden of Avalon.
+    </p>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="main-content">
+    <!-- Begin Article
+================================================== -->
+<div class="container col-xl-auto">
+    <div class="row">
+
+        <!-- Post Share -->
+        <div class="col-xl-1 pl-0">
+            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=ssh&url=/2020/05/30/ssh.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://facebook.com/sharer.php?u=/2020/05/30/ssh.html" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=/2020/05/30/ssh.html" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+
+        </div>
+
+        <!-- Post -->
+        
+
+        <div class="col-md-8 ">
+            <div class="mainheading">
+
+                <!-- Author Box -->
+                
+                <div class="row post-top-meta">
+                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                        
+                        <img class="author-thumb" src="/assets/images/Yan.png" alt="Yan">
+                        
+                    </div>
+                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                        <a target="_blank" class="link-dark" href="www.yan-wyb.com">Yan</a><a target="_blank" href="https://github.com/yan-wyb" class="btn follow">Follow</a>
+                        <span class="author-description">Just a simple man.</span>
+                    </div>
+                </div>
+                
+
+                <!-- Post Title -->
+                <h1 class="posttitle">ssh</h1>
+
+            </div>
+
+            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+            
+            <!-- End Adsense -->
+
+            <!-- Post Featured Image -->
+            
+
+            
+            <img class="featured-image img-fluid" src="/assets/images/miscellaneous/ssh.jpg" alt="ssh">
+            
+
+            
+            <!-- End Featured Image -->
+
+            <!-- Post Content -->
+            <div class="article-post">
+                <p>ssh是linux远程操作和管理服务的重要工具</p>
+
+<h1 id="安装ssh">安装ssh</h1>
+
+<p>使用各发行版的包安装工作直接安装即可,这里以ubuntu为例</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>ssh
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="ssh常用命令">ssh常用命令</h1>
+
+<h2 id="ssh连接远程host">ssh连接远程host</h2>
+
+<p>使用ssh登录服务器或者局域网下的其他主机是很常用的一种方式,特别在嵌入式开发里.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>ssh host-usename@host-ipaddress
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>比如:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>ssh root@192.168.1.250
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="退出远程连接">退出远程连接</h2>
+
+<p>使用<code class="highlighter-rouge">exit</code>命令就能退出远程连接.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">exit</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="ssh拷贝文件">ssh拷贝文件</h2>
+
+<p><code class="highlighter-rouge">scp</code>是最常用的用来和远程进行数据交互的工具,<code class="highlighter-rouge">-r</code>参数可直接交互整个文件夹</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>scp <span class="o">[[</span>user@]host1:]file1 ... <span class="o">[[</span>user@]host2:]file2
+<span class="nv">$ </span>scp <span class="nt">-r</span> <span class="o">[[</span>user@]host1:]file1 ... <span class="o">[[</span>user@]host2:]file2
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>host1是拷贝位置,host2是目标位置.则拷贝文件到远程主机,host1是你的主机,host2是远程主机.从远程主机拷贝文件到本地反过来即可.例如:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>scp ~/ssh.txt root@10.72.1.16:~  <span class="c">#从本地copy到远程主机</span>
+<span class="nv">$ </span>scp root@10.72.1.16:~/ssh.txt ~  <span class="c">#从远程主机copy到本地</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="ssh-key">ssh key</h1>
+
+<h2 id="生成ssh-key">生成ssh key</h2>
+
+<p><code class="highlighter-rouge">linux</code>下可直接在终端通过ssh的命令生成<code class="highlighter-rouge">ssh key</code></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-C</span> <span class="s2">"you@email.com"</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>都选择默认选项就可以生成相应的key</p>
+
+<h2 id="查看生成的key">查看生成的key</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">cat</span> ~/.ssh/id_rsa.pub
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="添加到ssh-agent">添加到ssh-agent</h2>
+
+<p>ssh-agent 就是key管理器，主要用于管理公钥验证使用的私钥。</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">eval</span> <span class="s2">"</span><span class="si">$(</span>ssh-agent <span class="nt">-s</span><span class="si">)</span><span class="s2">"</span>
+<span class="nv">$ </span>ssh-add ~/.ssh/id_rsa
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="git使用ssh">Git使用ssh</h1>
+
+<p>以github为例，gitlab和gitee是同样的。</p>
+
+<h2 id="添加key到github">添加key到github</h2>
+
+<p>打开github页面，打开个人设置</p>
+
+<p><img src="/assets/images/miscellaneous/ssh-git-1.png" alt="ssh-git-1" /></p>
+
+<p>在左边的栏目找到<code class="highlighter-rouge">SSH Key</code></p>
+
+<p><img src="/assets/images/miscellaneous/ssh-git-2.png" alt="ssh-git-2" /></p>
+
+<p>然后在主界面的上面就有一个新增<code class="highlighter-rouge">ssh key</code>的按键</p>
+
+<p><img src="/assets/images/miscellaneous/ssh-git-3.png" alt="ssh-git-3" /></p>
+
+<p>将生成的SSH Key添加到key里，titile可以随意设置</p>
+
+<p><img src="/assets/images/miscellaneous/ssh-git-4.png" alt="ssh-git-4" /></p>
+
+<p><code class="highlighter-rouge">Add SSH Key</code>以后就添加完成了</p>
+
+<h2 id="测试git的ssh配置是否成功">测试Git的ssh配置是否成功</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>ssh <span class="nt">-T</span> git@github.com
+Hi yan-wyb! You<span class="s1">'ve successfully authenticated, but GitHub does not provide shell access.
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>看到这个说名配置已经成功了。
+之后使用ssh来clone和push代码，就不再需要输入密码了。</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>git@github.com:khadas/khadas_docs.git
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>注意</strong>: 以<code class="highlighter-rouge">git@</code>开头的才是使用ssh方式<code class="highlighter-rouge">clone</code>的,以<code class="highlighter-rouge">http://</code>开头的就是使用<code class="highlighter-rouge">https://</code>方式</p>
+
+<h1 id="ssh免密登录">ssh免密登录</h1>
+
+<p><code class="highlighter-rouge">客户端</code>: 指使用<code class="highlighter-rouge">id_rsa</code>进行ssh登录的端,常常为你正在操作远程登录的PC端,或者部署工具端,如<code class="highlighter-rouge">travis</code></p>
+
+<p><code class="highlighter-rouge">服务端</code>: 值接受<code class="highlighter-rouge">id_rsa.pub</code>并保存进<code class="highlighter-rouge">authorized_keys</code>的端,常常是服务器如阿里云或者github.</p>
+
+<p><strong>注意</strong>: 免密登录对权限极其敏感</p>
+
+<h2 id="客户端操作">客户端操作</h2>
+
+<p>首先生成一对秘钥,生成方法可以参考上面的<code class="highlighter-rouge">ssh key</code>,为密钥对设置权限</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">chmod </span>600 ~/.ssh/id_rsa
+<span class="nv">$ </span><span class="nb">chmod </span>600 ~/.ssh/id_rsa.pub
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>将公钥添加到服务端的授权文件里</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>ssh-copy-id <span class="nt">-i</span> ~/.ssh/id_rsa.pub user@xx.x.xx.x  /<span class="k">*</span>1.公钥可以使用自定义的<span class="p">;</span>2.user是服务端用户名<span class="p">;</span>3.xx.x.xx.x是服务器地址,也可以使用域名<span class="k">*</span>/
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>输入远程登录的密码,就添加成功了</p>
+
+<h2 id="服务端操作">服务端操作</h2>
+
+<p>服务端只需要设置权限就可以</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">chmod </span>600 ~/.ssh/authorized_keys
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="测试">测试</h2>
+
+<p>客户端使用<code class="highlighter-rouge">ssh</code>登录</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>$ ssh user@xx.x.xx.x
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>直接登录即为设置成功,需要输入密码应检查权限问题.主目录权限必须小于等于<code class="highlighter-rouge">755</code></p>
+
+<h1 id="ssh端口映射">ssh端口映射</h1>
+
+<p>通过SSH可以将远程端口映射回本地，方便在搭建网站或者Blog时，本地访问，查看效果。</p>
+
+<p>示例，将远程的8888端口，映射到本地的8888端口。</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>ssh <span class="nt">-L8888</span>:localhost:8888 username@192.168.xx.xxx
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+            </div>
+
+            <!-- Rating -->
+            
+
+            <!-- Post Categories -->
+            <div class="after-post-cats">
+                <ul class="tags mb-4">
+                    
+                    
+                    <li>
+                        <a class="smoothscroll" href="/categories#git">git</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/categories#ssh">ssh</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Post Tags -->
+            <div class="after-post-tags">
+                <ul class="tags">
+                    
+                    
+                </ul>
+            </div>
+            <!-- End Tags -->
+
+        </div>
+        <!-- End Post -->
+
+        <div class="col-xl-3 pl-0">
+            <div class="share-yan sticky-top sticky-top-offset text-left">
+                <div class="text-left text-md-left">
+				    <a>Back to</a>
+				</div>
+
+				
+				 <div class="text-left text-md-left">
+				    <h3><a class="text-left text-md-left" href="/miscellaneous/index.html">miscellaneous</a></h3>
+				</div>
+				
+
+				<div class="text-left text-md-left">
+				<div class="sep2">
+				</div>
+				</div>
+                <div class="toc mt-4 mb-4">
+                <!-- Toc if any -->
+                    
+                        
+                            <h4 class="font-weight-bold">Summary</h3>
+                            <ul>
+  <li><a href="#安装ssh">安装ssh</a></li>
+  <li><a href="#ssh常用命令">ssh常用命令</a>
+    <ul>
+      <li><a href="#ssh连接远程host">ssh连接远程host</a></li>
+      <li><a href="#退出远程连接">退出远程连接</a></li>
+      <li><a href="#ssh拷贝文件">ssh拷贝文件</a></li>
+    </ul>
+  </li>
+  <li><a href="#ssh-key">ssh key</a>
+    <ul>
+      <li><a href="#生成ssh-key">生成ssh key</a></li>
+      <li><a href="#查看生成的key">查看生成的key</a></li>
+      <li><a href="#添加到ssh-agent">添加到ssh-agent</a></li>
+    </ul>
+  </li>
+  <li><a href="#git使用ssh">Git使用ssh</a>
+    <ul>
+      <li><a href="#添加key到github">添加key到github</a></li>
+      <li><a href="#测试git的ssh配置是否成功">测试Git的ssh配置是否成功</a></li>
+    </ul>
+  </li>
+  <li><a href="#ssh免密登录">ssh免密登录</a>
+    <ul>
+      <li><a href="#客户端操作">客户端操作</a></li>
+      <li><a href="#服务端操作">服务端操作</a></li>
+      <li><a href="#测试">测试</a></li>
+    </ul>
+  </li>
+  <li><a href="#ssh端口映射">ssh端口映射</a></li>
+</ul>
+
+                    
+                    <!-- End Toc -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pt-8 pb-8 text-center">
+        <div class="container">
+		    <div class = "share md-5 text-center">
+		        <p>last-modified : 2022-03-18 19:21:39 +0800</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Begin Comments
+================================================== 
+
+    <div class="container">
+        <div id="comments" class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'demowebsite'; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+            </div>
+        </div>
+    </div>
+ -->
+<!--End Comments
+================================================== -->
+
+<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
+https://search.google.com/structured-data/testing-tool/u/0/
+================================================== -->
+<!--
+ -->
+
+</div>
+    
+</div>
+
+<!-- Categories Jumbotron
+================================================== -->
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+            <div class="d-md-flex align-items-center justify-content-center h-100">
+                <h2 class="d-md-block align-self-center py-1 font-weight-light">More <span class="d-none d-md-inline">→</span></h2>
+            </div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+            
+            
+                
+                    <a class="mt-1 mb-1" href="/categories#vim">vim (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#git">git (4)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#ssh">ssh (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#linux">linux (9)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#ruby">ruby (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#nginx">nginx (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#web">web (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#travis">travis (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#ssl">ssl (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#python">python (4)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#c">c (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#windows">windows (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#kernel">kernel (5)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#dts">dts (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#amlogic">amlogic (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#buildroot">buildroot (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#net">net (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#c++">c++ (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#opencv">opencv (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#debs">debs (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#uboot">uboot (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#ubuntu">ubuntu (5)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#automake">automake (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#debug">debug (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#mesa">mesa (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#jekyll">jekyll (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#github">github (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#docker">docker (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#tool">tool (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#kms">kms (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#yocto">yocto (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#v2ray">v2ray (1)</a>
+                
+            
+            
+		</div>
+	</div>
+</div>
+
+<!-- Begin Footer
+================================================== -->
+<footer class="footer pt-8 pb-8 text-center">
+    <div class="container">
+        <div class="socials-media">
+            <ul class="list-unstyled">
+              <!--  Replace footer social links here -->
+
+<!-- <li class="d-inline-block ml-1 mr-1"><a target="_blank" href="https://www.facebook.com/yan.wyb.7" class="text-dark"><i class="fab fa-facebook-f"></i></a>
+</li> -->
+
+<li class="d-inline-block ml-1 mr-1"><a target="_blank" href="https://github.com/yan-wyb" class="text-dark"><i class="fab fa-github"></i></a></li>
+
+<li class="d-inline-block ml-1 mr-1"><a target="_blank" href="https://twitter.com/wybyan" class="text-dark"><i class="fab fa-twitter"></i></a></li>
+
+
+            </ul>
+        </div>
+        <!--
+  If you want to remove credits, please, donate:
+  https://www.wowthemes.net/freebies-license/
+-->
+
+<p>
+    
+<span class="credits"> 
+    
+	<a target="_blank" class="text-dark" href="https://github.com/yan-wyb">
+		<u>Copyright © 2022 Avalon</u>
+	</a>
+    
+</span>
+    
+</p>
+<p>
+    
+<span class="credits"> 
+    
+	<a target="_blank" class="text-dark" href="https://beian.miit.gov.cn/">
+		<u>粤ICP备20049535号</u>
+	</a>
+    
+</span>
+    
+</p>
+
+    </div>
+</footer>
+<!-- End Footer
+================================================== -->
+
+</div> <!-- /.site-content -->
+
+<!-- Scripts
+================================================== -->
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="/assets/js/mediumish.js"></script>
+
+
+
+<script src="/assets/js/ie10-viewport-bug-workaround.js"></script> 
+
+
+<script id="dsq-count-scr" src="//demowebsite.disqus.com/count.js"></script>
+ -->
+</body>
+</html>

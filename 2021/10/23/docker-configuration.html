@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="icon" href="/assets/images/logo.png">
+
+<title>内核增加docker配置 | Avalon</title>
+
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>内核增加docker配置 | Avalon</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="内核增加docker配置" />
+<meta name="author" content="Yan" />
+<meta property="og:locale" content="cn" />
+<meta name="description" content="这篇主要记录如何在ARM64上的内核上配置支持Docker" />
+<meta property="og:description" content="这篇主要记录如何在ARM64上的内核上配置支持Docker" />
+<meta property="og:site_name" content="Avalon" />
+<meta property="og:image" content="/assets/images/embedded/kernel/docker-logo.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-23T00:00:00+08:00" />
+<script type="application/ld+json">
+{"headline":"内核增加docker配置","dateModified":"2022-03-18T19:21:39+08:00","datePublished":"2021-10-23T00:00:00+08:00","image":"/assets/images/embedded/kernel/docker-logo.png","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"},"name":"Yan"},"mainEntityOfPage":{"@type":"WebPage","@id":"/2021/10/23/docker-configuration.html"},"url":"/2021/10/23/docker-configuration.html","author":{"@type":"Person","name":"Yan"},"description":"这篇主要记录如何在ARM64上的内核上配置支持Docker","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link href="/assets/css/bootstrap2.min.css" rel="stylesheet">
+
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="/assets/css/screen.css" rel="stylesheet">
+
+<link href="/assets/css/main.css" rel="stylesheet">
+
+<link rel="stylesheet" href="/assets/css/all.css">
+
+<script src="/assets/js/jquery.min.js"></script>
+
+<script src="/assets/js/bootstrap.min.js"></script>
+
+</head>
+
+
+<!-- change your GA id in _config.yml -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', '', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+<body class="layout-post">
+	<!-- defer loading of font and font awesome -->
+	<noscript id="deferred-styles">
+		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	</noscript>
+
+
+<!-- Begin Menu Navigation
+================================================== -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+
+    <div class="container pr-0">
+
+    <!-- Begin Logo -->
+    <a class="navbar-brand" href="/">
+    <img src="/assets/images/logo.png" alt="Avalon">
+    </a>
+    <!-- End Logo -->
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMediumish">
+
+        <!-- Begin Menu -->
+
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                <a class="nav-link" href="/linux/index.html">Linux</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/embedded/index.html">Embedded</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/algorithm/index.html">Algorithm</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/prog-lang/index.html">Prog-lang</a>
+
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/ai/index.html">AI</a>
+                </li>
+
+				</li>
+                <li class="nav-item">
+                <a class="nav-link" href="/miscellaneous/index.html">Miscellaneous</a>
+                </li>
+
+				</li>
+                <li class="nav-item">
+                <a class="nav-link" href="/message/index.html">Message</a>
+                </li>
+
+                <li class="nav-item">
+                <a target="_blank" class="nav-link" href="https://github.com/yan-wyb"><i class="fab fa-github"></i>Github</a>
+                </li>
+
+                <script src="/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/assets/js/lunrsearchengine.js"></script>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/about/index.html">About</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">language</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/2021/10/23/docker-configuration.html">中文</a>
+<!--                        <a class="dropdown-item" href="/en/2021/10/23/docker-configuration.html">English</a>  -->
+                    </div>
+                </li>
+
+            </ul>
+
+        <!-- End Menu -->
+
+    </div>
+
+    </div>
+</nav>
+<!-- End Navigation
+================================================== -->
+
+<div class="site-content">
+
+<div class="container">
+
+<!-- Site Title
+================================================== -->
+<div class="mainheading">
+    <h1 class="sitetitle">Avalon</h1>
+    <p class="lead">
+        Garden of Avalon.
+    </p>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="main-content">
+    <!-- Begin Article
+================================================== -->
+<div class="container col-xl-auto">
+    <div class="row">
+
+        <!-- Post Share -->
+        <div class="col-xl-1 pl-0">
+            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=内核增加docker配置&url=/2021/10/23/docker-configuration.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://facebook.com/sharer.php?u=/2021/10/23/docker-configuration.html" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=/2021/10/23/docker-configuration.html" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+
+        </div>
+
+        <!-- Post -->
+        
+
+        <div class="col-md-8 ">
+            <div class="mainheading">
+
+                <!-- Author Box -->
+                
+                <div class="row post-top-meta">
+                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                        
+                        <img class="author-thumb" src="/assets/images/Yan.png" alt="Yan">
+                        
+                    </div>
+                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                        <a target="_blank" class="link-dark" href="www.yan-wyb.com">Yan</a><a target="_blank" href="https://github.com/yan-wyb" class="btn follow">Follow</a>
+                        <span class="author-description">Just a simple man.</span>
+                    </div>
+                </div>
+                
+
+                <!-- Post Title -->
+                <h1 class="posttitle">内核增加docker配置</h1>
+
+            </div>
+
+            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+            
+            <!-- End Adsense -->
+
+            <!-- Post Featured Image -->
+            
+
+            
+            <img class="featured-image img-fluid" src="/assets/images/embedded/kernel/docker-logo.png" alt="内核增加docker配置">
+            
+
+            
+            <!-- End Featured Image -->
+
+            <!-- Post Content -->
+            <div class="article-post">
+                <p>这篇主要记录如何在ARM64上的内核上配置支持Docker</p>
+
+<p>使用docker验证脚本验证所需配置</p>
+
+<p>Github Wiki地址： https://github.com/umiddelb/armhf/wiki/Installing,-running,-using-docker-on-armhf-%28ARMv7%29-devices</p>
+
+<p>https://github.com/yan-wyb/source/blob/master/shell/docker/check-config.sh</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>curl <span class="nt">-L</span> https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh | /bin/bash /dev/stdin
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 11991  100 11991    0     0  13382      0 <span class="nt">--</span>:--:-- <span class="nt">--</span>:--:-- <span class="nt">--</span>:--:-- 13382
+info: reading kernel config from /proc/config.gz ...
+
+Generally Necessary:
+- cgroup hierarchy: properly mounted <span class="o">[</span>/sys/fs/cgroup]
+- CONFIG_NAMESPACES: enabled
+- CONFIG_NET_NS: enabled
+- CONFIG_PID_NS: enabled
+- CONFIG_IPC_NS: enabled
+- CONFIG_UTS_NS: enabled
+- CONFIG_CGROUPS: enabled
+- CONFIG_CGROUP_CPUACCT: enabled
+- CONFIG_CGROUP_DEVICE: enabled
+- CONFIG_CGROUP_FREEZER: enabled
+- CONFIG_CGROUP_SCHED: enabled
+- CONFIG_CPUSETS: enabled
+- CONFIG_MEMCG: enabled
+- CONFIG_KEYS: enabled
+- CONFIG_VETH: enabled
+- CONFIG_BRIDGE: enabled
+- CONFIG_BRIDGE_NETFILTER: enabled
+- CONFIG_IP_NF_FILTER: enabled
+- CONFIG_IP_NF_TARGET_MASQUERADE: enabled
+- CONFIG_NETFILTER_XT_MATCH_ADDRTYPE: enabled
+- CONFIG_NETFILTER_XT_MATCH_CONNTRACK: enabled
+- CONFIG_NETFILTER_XT_MATCH_IPVS: enabled
+- CONFIG_NETFILTER_XT_MARK: enabled
+- CONFIG_IP_NF_NAT: enabled
+- CONFIG_NF_NAT: enabled
+- CONFIG_POSIX_MQUEUE: enabled
+- CONFIG_CGROUP_BPF: enabled
+
+Optional Features:
+- CONFIG_USER_NS: enabled
+- CONFIG_SECCOMP: enabled
+- CONFIG_SECCOMP_FILTER: enabled
+- CONFIG_CGROUP_PIDS: enabled
+- CONFIG_MEMCG_SWAP: enabled
+- CONFIG_MEMCG_SWAP_ENABLED: enabled
+    <span class="o">(</span>cgroup swap accounting is currently enabled<span class="o">)</span>
+- CONFIG_BLK_CGROUP: enabled
+- CONFIG_BLK_DEV_THROTTLING: enabled
+- CONFIG_CGROUP_PERF: enabled
+- CONFIG_CGROUP_HUGETLB: missing
+- CONFIG_NET_CLS_CGROUP: enabled
+- CONFIG_CGROUP_NET_PRIO: enabled
+- CONFIG_CFS_BANDWIDTH: enabled
+- CONFIG_FAIR_GROUP_SCHED: enabled
+- CONFIG_RT_GROUP_SCHED: enabled
+- CONFIG_IP_NF_TARGET_REDIRECT: enabled
+- CONFIG_IP_VS: enabled
+- CONFIG_IP_VS_NFCT: enabled
+- CONFIG_IP_VS_PROTO_TCP: enabled
+- CONFIG_IP_VS_PROTO_UDP: enabled
+- CONFIG_IP_VS_RR: enabled
+- CONFIG_SECURITY_SELINUX: enabled
+- CONFIG_SECURITY_APPARMOR: enabled
+- CONFIG_EXT4_FS: enabled
+- CONFIG_EXT4_FS_POSIX_ACL: enabled
+- CONFIG_EXT4_FS_SECURITY: enabled
+- Network Drivers:
+  - <span class="s2">"overlay"</span>:
+    - CONFIG_VXLAN: enabled
+    - CONFIG_BRIDGE_VLAN_FILTERING: enabled
+      Optional <span class="o">(</span><span class="k">for </span>encrypted networks<span class="o">)</span>:
+      - CONFIG_CRYPTO: enabled
+      - CONFIG_CRYPTO_AEAD: enabled
+      - CONFIG_CRYPTO_GCM: enabled
+      - CONFIG_CRYPTO_SEQIV: enabled
+      - CONFIG_CRYPTO_GHASH: enabled
+      - CONFIG_XFRM: enabled
+      - CONFIG_XFRM_USER: enabled
+      - CONFIG_XFRM_ALGO: enabled
+      - CONFIG_INET_ESP: enabled
+  - <span class="s2">"ipvlan"</span>:
+    - CONFIG_IPVLAN: enabled
+  - <span class="s2">"macvlan"</span>:
+    - CONFIG_MACVLAN: enabled
+    - CONFIG_DUMMY: enabled
+  - <span class="s2">"ftp,tftp client in container"</span>:
+    - CONFIG_NF_NAT_FTP: enabled
+    - CONFIG_NF_CONNTRACK_FTP: enabled
+    - CONFIG_NF_NAT_TFTP: enabled
+    - CONFIG_NF_CONNTRACK_TFTP: enabled
+- Storage Drivers:
+  - <span class="s2">"aufs"</span>:
+    - CONFIG_AUFS_FS: missing
+  - <span class="s2">"btrfs"</span>:
+    - CONFIG_BTRFS_FS: enabled <span class="o">(</span>as module<span class="o">)</span>
+    - CONFIG_BTRFS_FS_POSIX_ACL: enabled
+  - <span class="s2">"devicemapper"</span>:
+    - CONFIG_BLK_DEV_DM: enabled
+    - CONFIG_DM_THIN_PROVISIONING: enabled
+  - <span class="s2">"overlay"</span>:
+    - CONFIG_OVERLAY_FS: enabled <span class="o">(</span>as module<span class="o">)</span>
+  - <span class="s2">"zfs"</span>:
+    - /dev/zfs: missing
+    - zfs <span class="nb">command</span>: missing
+    - zpool <span class="nb">command</span>: missing
+
+Limits:
+- /proc/sys/kernel/keys/root_maxkeys: 1000000
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>缺了哪些配置就在内核里面打开。</p>
+
+
+            </div>
+
+            <!-- Rating -->
+            
+
+            <!-- Post Categories -->
+            <div class="after-post-cats">
+                <ul class="tags mb-4">
+                    
+                    
+                    <li>
+                        <a class="smoothscroll" href="/categories#docker">docker</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/categories#kernel">kernel</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Post Tags -->
+            <div class="after-post-tags">
+                <ul class="tags">
+                    
+                    
+                </ul>
+            </div>
+            <!-- End Tags -->
+
+        </div>
+        <!-- End Post -->
+
+        <div class="col-xl-3 pl-0">
+            <div class="share-yan sticky-top sticky-top-offset text-left">
+                <div class="text-left text-md-left">
+				    <a>Back to</a>
+				</div>
+
+				
+			    <div class="text-left text-md-left">
+				    <h3><a class="text-left text-md-left" href="/embedded/kernel/index.html">kernel</a></h3>
+				</div>
+				
+
+				<div class="text-left text-md-left">
+				<div class="sep2">
+				</div>
+				</div>
+                <div class="toc mt-4 mb-4">
+                <!-- Toc if any -->
+                    
+                        
+                            <h4 class="font-weight-bold">Summary</h3>
+                            
+
+                    
+                    <!-- End Toc -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pt-8 pb-8 text-center">
+        <div class="container">
+		    <div class = "share md-5 text-center">
+		        <p>last-modified : 2022-03-18 19:21:39 +0800</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Begin Comments
+================================================== 
+
+    <div class="container">
+        <div id="comments" class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'demowebsite'; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+            </div>
+        </div>
+    </div>
+ -->
+<!--End Comments
+================================================== -->
+
+<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
+https://search.google.com/structured-data/testing-tool/u/0/
+================================================== -->
+<!--
+ -->
+
+</div>
+    
+</div>
+
+<!-- Categories Jumbotron
+================================================== -->
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+            <div class="d-md-flex align-items-center justify-content-center h-100">
+                <h2 class="d-md-block align-self-center py-1 font-weight-light">More <span class="d-none d-md-inline">→</span></h2>
+            </div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+            
+            
+                
+                    <a class="mt-1 mb-1" href="/categories#vim">vim (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#git">git (4)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#ssh">ssh (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#linux">linux (9)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#ruby">ruby (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#nginx">nginx (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#web">web (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#travis">travis (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#ssl">ssl (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#python">python (4)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#c">c (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#windows">windows (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#kernel">kernel (5)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#dts">dts (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#amlogic">amlogic (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#buildroot">buildroot (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#net">net (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#c++">c++ (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#opencv">opencv (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#debs">debs (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#uboot">uboot (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#ubuntu">ubuntu (5)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#automake">automake (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#debug">debug (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#mesa">mesa (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#jekyll">jekyll (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#github">github (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#docker">docker (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#tool">tool (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#kms">kms (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#yocto">yocto (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#v2ray">v2ray (1)</a>
+                
+            
+            
+		</div>
+	</div>
+</div>
+
+<!-- Begin Footer
+================================================== -->
+<footer class="footer pt-8 pb-8 text-center">
+    <div class="container">
+        <div class="socials-media">
+            <ul class="list-unstyled">
+              <!--  Replace footer social links here -->
+
+<!-- <li class="d-inline-block ml-1 mr-1"><a target="_blank" href="https://www.facebook.com/yan.wyb.7" class="text-dark"><i class="fab fa-facebook-f"></i></a>
+</li> -->
+
+<li class="d-inline-block ml-1 mr-1"><a target="_blank" href="https://github.com/yan-wyb" class="text-dark"><i class="fab fa-github"></i></a></li>
+
+<li class="d-inline-block ml-1 mr-1"><a target="_blank" href="https://twitter.com/wybyan" class="text-dark"><i class="fab fa-twitter"></i></a></li>
+
+
+            </ul>
+        </div>
+        <!--
+  If you want to remove credits, please, donate:
+  https://www.wowthemes.net/freebies-license/
+-->
+
+<p>
+    
+<span class="credits"> 
+    
+	<a target="_blank" class="text-dark" href="https://github.com/yan-wyb">
+		<u>Copyright © 2022 Avalon</u>
+	</a>
+    
+</span>
+    
+</p>
+<p>
+    
+<span class="credits"> 
+    
+	<a target="_blank" class="text-dark" href="https://beian.miit.gov.cn/">
+		<u>粤ICP备20049535号</u>
+	</a>
+    
+</span>
+    
+</p>
+
+    </div>
+</footer>
+<!-- End Footer
+================================================== -->
+
+</div> <!-- /.site-content -->
+
+<!-- Scripts
+================================================== -->
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="/assets/js/mediumish.js"></script>
+
+
+
+<script src="/assets/js/ie10-viewport-bug-workaround.js"></script> 
+
+
+<script id="dsq-count-scr" src="//demowebsite.disqus.com/count.js"></script>
+ -->
+</body>
+</html>

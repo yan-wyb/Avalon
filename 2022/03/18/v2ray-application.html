@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="icon" href="/assets/images/logo.png">
+
+<title>搭建V2Ray服务 | Avalon</title>
+
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>搭建V2Ray服务 | Avalon</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="搭建V2Ray服务" />
+<meta name="author" content="Yan" />
+<meta property="og:locale" content="cn" />
+<meta name="description" content="Linux" />
+<meta property="og:description" content="Linux" />
+<meta property="og:site_name" content="Avalon" />
+<meta property="og:image" content="/assets/images/no-title/no-title18.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-03-18T00:00:00+08:00" />
+<script type="application/ld+json">
+{"headline":"搭建V2Ray服务","dateModified":"2022-03-18T19:21:39+08:00","datePublished":"2022-03-18T00:00:00+08:00","image":"/assets/images/no-title/no-title18.jpg","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"},"name":"Yan"},"mainEntityOfPage":{"@type":"WebPage","@id":"/2022/03/18/v2ray-application.html"},"url":"/2022/03/18/v2ray-application.html","author":{"@type":"Person","name":"Yan"},"description":"Linux","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link href="/assets/css/bootstrap2.min.css" rel="stylesheet">
+
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="/assets/css/screen.css" rel="stylesheet">
+
+<link href="/assets/css/main.css" rel="stylesheet">
+
+<link rel="stylesheet" href="/assets/css/all.css">
+
+<script src="/assets/js/jquery.min.js"></script>
+
+<script src="/assets/js/bootstrap.min.js"></script>
+
+</head>
+
+
+<!-- change your GA id in _config.yml -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', '', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+<body class="layout-post">
+	<!-- defer loading of font and font awesome -->
+	<noscript id="deferred-styles">
+		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	</noscript>
+
+
+<!-- Begin Menu Navigation
+================================================== -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+
+    <div class="container pr-0">
+
+    <!-- Begin Logo -->
+    <a class="navbar-brand" href="/">
+    <img src="/assets/images/logo.png" alt="Avalon">
+    </a>
+    <!-- End Logo -->
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMediumish">
+
+        <!-- Begin Menu -->
+
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                <a class="nav-link" href="/linux/index.html">Linux</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/embedded/index.html">Embedded</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/algorithm/index.html">Algorithm</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/prog-lang/index.html">Prog-lang</a>
+
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/ai/index.html">AI</a>
+                </li>
+
+				</li>
+                <li class="nav-item">
+                <a class="nav-link" href="/miscellaneous/index.html">Miscellaneous</a>
+                </li>
+
+				</li>
+                <li class="nav-item">
+                <a class="nav-link" href="/message/index.html">Message</a>
+                </li>
+
+                <li class="nav-item">
+                <a target="_blank" class="nav-link" href="https://github.com/yan-wyb"><i class="fab fa-github"></i>Github</a>
+                </li>
+
+                <script src="/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/assets/js/lunrsearchengine.js"></script>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/about/index.html">About</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">language</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/2022/03/18/v2ray-application.html">中文</a>
+<!--                        <a class="dropdown-item" href="/en/2022/03/18/v2ray-application.html">English</a>  -->
+                    </div>
+                </li>
+
+            </ul>
+
+        <!-- End Menu -->
+
+    </div>
+
+    </div>
+</nav>
+<!-- End Navigation
+================================================== -->
+
+<div class="site-content">
+
+<div class="container">
+
+<!-- Site Title
+================================================== -->
+<div class="mainheading">
+    <h1 class="sitetitle">Avalon</h1>
+    <p class="lead">
+        Garden of Avalon.
+    </p>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="main-content">
+    <!-- Begin Article
+================================================== -->
+<div class="container col-xl-auto">
+    <div class="row">
+
+        <!-- Post Share -->
+        <div class="col-xl-1 pl-0">
+            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=搭建V2Ray服务&url=/2022/03/18/v2ray-application.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://facebook.com/sharer.php?u=/2022/03/18/v2ray-application.html" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=/2022/03/18/v2ray-application.html" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+
+        </div>
+
+        <!-- Post -->
+        
+
+        <div class="col-md-8 ">
+            <div class="mainheading">
+
+                <!-- Author Box -->
+                
+                <div class="row post-top-meta">
+                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                        
+                        <img class="author-thumb" src="/assets/images/Yan.png" alt="Yan">
+                        
+                    </div>
+                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                        <a target="_blank" class="link-dark" href="www.yan-wyb.com">Yan</a><a target="_blank" href="https://github.com/yan-wyb" class="btn follow">Follow</a>
+                        <span class="author-description">Just a simple man.</span>
+                    </div>
+                </div>
+                
+
+                <!-- Post Title -->
+                <h1 class="posttitle">搭建V2Ray服务</h1>
+
+            </div>
+
+            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+            
+            <!-- End Adsense -->
+
+            <!-- Post Featured Image -->
+            
+
+            
+            <img class="featured-image img-fluid" src="/assets/images/no-title/no-title18.jpg" alt="搭建V2Ray服务">
+            
+
+            
+            <!-- End Featured Image -->
+
+            <!-- Post Content -->
+            <div class="article-post">
+                <h1 id="linux">Linux</h1>
+
+<h2 id="获取应用">获取应用</h2>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">mkdir</span> ~/v2ray <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/v2ray
+<span class="nv">$ </span>git clone https://github.com/yan-wyb/v2rayApplication.git
+<span class="nv">$ </span><span class="nb">cd </span>v2rayApplication
+<span class="nv">$ </span>unzip v2ray-linux-64.zip
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="配置客户端">配置客户端</h2>
+
+<h3 id="step1-配置v2ray">Step1: 配置V2Ray</h3>
+
+<ol>
+  <li>打开客户端,选择<code class="highlighter-rouge">Preferences</code>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>./Qv2ray-v2.7.0-linux-x64.AppImage
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+    <p><img src="/assets/images/miscellaneous/ubuntuv2ray1.png" alt="" /></p>
+  </li>
+  <li>选择<code class="highlighter-rouge">Kernel Settings</code>,V2Ray核心文件件配置为上一步获取的仓库中的V2Ray核心文件夹
+<img src="/assets/images/miscellaneous/ubuntuv2ray2.png" alt="" /></li>
+</ol>
+
+<h3 id="step2-添加v2ray节点">Step2: 添加V2Ray节点</h3>
+
+<ol>
+  <li>选择<code class="highlighter-rouge">import</code>添加节点
+<img src="/assets/images/miscellaneous/ubuntuv2ray3.png" alt="" /></li>
+  <li>将VMESS链接添加到<code class="highlighter-rouge">Share Link</code>,点击<code class="highlighter-rouge">Import</code>完成添加
+<img src="/assets/images/miscellaneous/ubuntuv2ray4.png" alt="" /></li>
+  <li>点击已添加的节点或者有右击节点连接</li>
+</ol>
+
+<p><strong>注意</strong>: 手动添加节点信息，不使用VMESS链接的，请点击<code class="highlighter-rouge">NEW</code>添加。
+自此，V2Ray插件已经可以正常运行起来了。</p>
+
+<h2 id="额外协议支持">额外协议支持</h2>
+
+<p>点击查看本地插件文件夹，将仓库内的插件添加到对应的文件，重启软件</p>
+
+<p><img src="/assets/images/miscellaneous/ubuntuv2ray5.png" alt="" /></p>
+
+<h1 id="windows">Windows</h1>
+
+<h2 id="安装客户端">安装客户端</h2>
+
+<ol>
+  <li>点击下载<a href="https://github.com/yan-wyb/v2rayApplication/raw/master/windows/Qv2ray-v2.7.0-Windows-Installer.exe">Qv2ray-v2.7.0-Windows-Installer.exe</a></li>
+  <li>双击安装，全部选择默认选项</li>
+</ol>
+
+<h2 id="配置v2ray">配置V2Ray</h2>
+
+<ol>
+  <li>桌面新建文件夹<code class="highlighter-rouge">v2ray</code>, 将<a href="https://github.com/yan-wyb/v2rayApplication/raw/master/windows/v2ray-windows-64.zip">v2ray-windows-64.zip</a>解压到桌面的文件夹内。
+<img src="/assets/images/miscellaneous/windowsv2ray1.png" alt="" /></li>
+  <li>配置V2Ray核心文件路径，<code class="highlighter-rouge">首选项</code> –&gt; <code class="highlighter-rouge">内核配置</code>:
+<img src="/assets/images/miscellaneous/windowsv2ray2.png" alt="" /></li>
+  <li>导入节点。点击导入，将VMESS链接粘贴在分享链接出。
+<img src="/assets/images/miscellaneous/windowsv2ray3.png" alt="" /></li>
+  <li>双击默认分组，就能看到刚才配置的节点，连接就能使用。
+<img src="/assets/images/miscellaneous/windowsv2ray4.png" alt="" /></li>
+</ol>
+
+
+            </div>
+
+            <!-- Rating -->
+            
+
+            <!-- Post Categories -->
+            <div class="after-post-cats">
+                <ul class="tags mb-4">
+                    
+                    
+                    <li>
+                        <a class="smoothscroll" href="/categories#ubuntu">ubuntu</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/categories#v2ray">v2ray</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/categories#windows">windows</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Post Tags -->
+            <div class="after-post-tags">
+                <ul class="tags">
+                    
+                    
+                </ul>
+            </div>
+            <!-- End Tags -->
+
+        </div>
+        <!-- End Post -->
+
+        <div class="col-xl-3 pl-0">
+            <div class="share-yan sticky-top sticky-top-offset text-left">
+                <div class="text-left text-md-left">
+				    <a>Back to</a>
+				</div>
+
+				
+				 <div class="text-left text-md-left">
+				    <h3><a class="text-left text-md-left" href="/miscellaneous/index.html">miscellaneous</a></h3>
+				</div>
+				
+
+				<div class="text-left text-md-left">
+				<div class="sep2">
+				</div>
+				</div>
+                <div class="toc mt-4 mb-4">
+                <!-- Toc if any -->
+                    
+                        
+                            <h4 class="font-weight-bold">Summary</h3>
+                            <ul>
+  <li><a href="#linux">Linux</a>
+    <ul>
+      <li><a href="#获取应用">获取应用</a></li>
+      <li><a href="#配置客户端">配置客户端</a>
+        <ul>
+          <li><a href="#step1-配置v2ray">Step1: 配置V2Ray</a></li>
+          <li><a href="#step2-添加v2ray节点">Step2: 添加V2Ray节点</a></li>
+        </ul>
+      </li>
+      <li><a href="#额外协议支持">额外协议支持</a></li>
+    </ul>
+  </li>
+  <li><a href="#windows">Windows</a>
+    <ul>
+      <li><a href="#安装客户端">安装客户端</a></li>
+      <li><a href="#配置v2ray">配置V2Ray</a></li>
+    </ul>
+  </li>
+</ul>
+
+                    
+                    <!-- End Toc -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pt-8 pb-8 text-center">
+        <div class="container">
+		    <div class = "share md-5 text-center">
+		        <p>last-modified : 2022-03-18 19:21:39 +0800</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Begin Comments
+================================================== 
+
+    <div class="container">
+        <div id="comments" class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'demowebsite'; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+            </div>
+        </div>
+    </div>
+ -->
+<!--End Comments
+================================================== -->
+
+<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
+https://search.google.com/structured-data/testing-tool/u/0/
+================================================== -->
+<!--
+ -->
+
+</div>
+    
+</div>
+
+<!-- Categories Jumbotron
+================================================== -->
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+            <div class="d-md-flex align-items-center justify-content-center h-100">
+                <h2 class="d-md-block align-self-center py-1 font-weight-light">More <span class="d-none d-md-inline">→</span></h2>
+            </div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+            
+            
+                
+                    <a class="mt-1 mb-1" href="/categories#vim">vim (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#git">git (4)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#ssh">ssh (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#linux">linux (9)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#ruby">ruby (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#nginx">nginx (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#web">web (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#travis">travis (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#ssl">ssl (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#python">python (4)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#c">c (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#windows">windows (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#kernel">kernel (5)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#dts">dts (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#amlogic">amlogic (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#buildroot">buildroot (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#net">net (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#c++">c++ (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#opencv">opencv (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#debs">debs (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#uboot">uboot (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#ubuntu">ubuntu (5)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#automake">automake (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#debug">debug (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#mesa">mesa (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#jekyll">jekyll (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#github">github (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#docker">docker (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#tool">tool (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#kms">kms (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#yocto">yocto (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#v2ray">v2ray (1)</a>
+                
+            
+            
+		</div>
+	</div>
+</div>
+
+<!-- Begin Footer
+================================================== -->
+<footer class="footer pt-8 pb-8 text-center">
+    <div class="container">
+        <div class="socials-media">
+            <ul class="list-unstyled">
+              <!--  Replace footer social links here -->
+
+<!-- <li class="d-inline-block ml-1 mr-1"><a target="_blank" href="https://www.facebook.com/yan.wyb.7" class="text-dark"><i class="fab fa-facebook-f"></i></a>
+</li> -->
+
+<li class="d-inline-block ml-1 mr-1"><a target="_blank" href="https://github.com/yan-wyb" class="text-dark"><i class="fab fa-github"></i></a></li>
+
+<li class="d-inline-block ml-1 mr-1"><a target="_blank" href="https://twitter.com/wybyan" class="text-dark"><i class="fab fa-twitter"></i></a></li>
+
+
+            </ul>
+        </div>
+        <!--
+  If you want to remove credits, please, donate:
+  https://www.wowthemes.net/freebies-license/
+-->
+
+<p>
+    
+<span class="credits"> 
+    
+	<a target="_blank" class="text-dark" href="https://github.com/yan-wyb">
+		<u>Copyright © 2022 Avalon</u>
+	</a>
+    
+</span>
+    
+</p>
+<p>
+    
+<span class="credits"> 
+    
+	<a target="_blank" class="text-dark" href="https://beian.miit.gov.cn/">
+		<u>粤ICP备20049535号</u>
+	</a>
+    
+</span>
+    
+</p>
+
+    </div>
+</footer>
+<!-- End Footer
+================================================== -->
+
+</div> <!-- /.site-content -->
+
+<!-- Scripts
+================================================== -->
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="/assets/js/mediumish.js"></script>
+
+
+
+<script src="/assets/js/ie10-viewport-bug-workaround.js"></script> 
+
+
+<script id="dsq-count-scr" src="//demowebsite.disqus.com/count.js"></script>
+ -->
+</body>
+</html>
